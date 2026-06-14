@@ -1,0 +1,34 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "apis": "https://apis.io/vocab/",
+    "openapi": "https://spec.openapis.org/oas/v3.1.0#"
+  },
+  "@type": "WebAPI",
+  "name": "Basescan API",
+  "description": "Base L2 blockchain explorer with a REST API for querying Base network transactions, token balances, smart contract ABIs, ERC-20 transfer events, gas prices, and block data. Powered by the Etherscan team and migrated to the unified Etherscan API V2 platform, enabling access to 50+ EVM chains with a single API key using chain ID 8453 for Base.",
+  "url": "https://docs.basescan.org",
+  "image": "https://basescan.org/images/brandassets/basescan-logo-circle.png",
+  "keywords": ["blockchain", "Base", "L2", "explorer", "Ethereum", "EVM", "transactions", "tokens", "smart contracts"],
+  "provider": {
+    "@type": "Organization",
+    "name": "Basescan",
+    "url": "https://basescan.org"
+  },
+  "termsOfService": "https://etherscan.io/terms",
+  "license": "https://etherscan.io/terms",
+  "documentation": "https://docs.basescan.org",
+  "apis:baseURL": "https://api.basescan.org/api",
+  "apis:chainId": "8453",
+  "apis:network": "Base (L2)",
+  "apis:compatibleWith": "Etherscan API V2",
+  "apis:openapi": "https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/openapi/openapi.yml",
+  "apis:authentication": {
+    "@type": "apis:APIKeyAuthentication",
+    "url": "https://basescan.org/myapikey"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://etherscan.io/apis?id=8453"
+  }
+}

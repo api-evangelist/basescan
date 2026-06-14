@@ -1,0 +1,78 @@
+name: Basescan
+description: Base L2 blockchain explorer with a REST API for querying Base network transactions, token balances, smart contract ABIs, ERC-20 transfer events, gas prices, and block data. Powered by the Etherscan team and migrated to the unified Etherscan API V2 platform, enabling access to 50+ EVM chains with a single API key using chain ID 8453 for Base.
+image: https://basescan.org/images/brandassets/basescan-logo-circle.png
+tags:
+  - blockchain
+  - Base
+  - L2
+  - explorer
+  - Ethereum
+  - EVM
+  - transactions
+  - tokens
+  - smart contracts
+created: '2026-06-13'
+modified: '2026-06-13'
+url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - name: Basescan API
+    description: REST API for querying Base L2 blockchain data including account balances, transactions, token transfers, smart contract ABIs, gas prices, block information, and event logs. Powered by Etherscan V2 with chain ID 8453 for Base network.
+    humanURL: https://docs.basescan.org
+    baseURL: https://api.basescan.org/api
+    tags:
+      - accounts
+      - transactions
+      - tokens
+      - contracts
+      - blocks
+      - gas
+      - logs
+    properties:
+      - type: Documentation
+        url: https://docs.basescan.org
+      - type: OpenAPI
+        url: https://docs.etherscan.io/api-reference
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+      - type: Signup
+        url: https://basescan.org/register
+      - type: Login
+        url: https://basescan.org/login
+      - type: Keys
+        url: https://basescan.org/myapikey
+      - type: StatusPage
+        url: https://etherscan.freshstatus.io
+      - type: FAQ
+        url: https://info.basescan.org
+    contact:
+      - FN: Basescan Support
+        url: https://info.basescan.org
+        email: ''
+    meta:
+      - name: chainId
+        value: '8453'
+      - name: network
+        value: Base (L2)
+      - name: compatibleWith
+        value: Etherscan API V2
+common:
+  - type: Authentication
+    url: https://basescan.org/myapikey
+  - type: Plans
+    url: https://etherscan.io/apis?id=8453
+  - type: PrivacyPolicy
+    url: https://etherscan.io/privacyPolicy
+  - type: TermsOfService
+    url: https://etherscan.io/terms
+  - type: Blog
+    url: https://info.basescan.org
+  - type: Support
+    url: https://info.basescan.org
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

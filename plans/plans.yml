@@ -1,0 +1,123 @@
+plans:
+  - name: Free
+    description: Community-tier access to the Basescan API via Etherscan V2. Supports selected chains (approx. 90% coverage) with basic rate limits. Suitable for development and low-volume applications.
+    url: https://etherscan.io/apis?id=8453
+    price: 0.00
+    currency: USD
+    period: monthly
+    features:
+      - Selected chains (approx. 90% EVM chain coverage)
+      - 3 API calls per second
+      - 100,000 API calls per day
+      - Standard account, transaction, token, and contract endpoints
+      - Gas oracle access
+      - Community support
+    rateLimit:
+      requests: 3
+      period: second
+    dailyLimit: 100000
+
+  - name: Lite
+    description: Entry-level paid plan granting access to all 50+ supported EVM chains with a higher rate limit. Ideal for production apps requiring full chain coverage.
+    url: https://etherscan.io/apis?id=8453
+    price: 49.00
+    currency: USD
+    period: monthly
+    features:
+      - All supported EVM chains (50+)
+      - 5 API calls per second
+      - 100,000 API calls per day
+      - Escalated support
+    rateLimit:
+      requests: 5
+      period: second
+    dailyLimit: 100000
+
+  - name: Standard
+    description: Mid-tier plan with doubled daily call allowance, higher throughput, and access to Pro endpoints including advanced filtering and analytics.
+    url: https://etherscan.io/apis?id=8453
+    price: 199.00
+    currency: USD
+    period: monthly
+    features:
+      - All supported EVM chains (50+)
+      - 10 API calls per second
+      - 200,000 API calls per day
+      - Pro endpoints included
+      - Escalated support
+    rateLimit:
+      requests: 10
+      period: second
+    dailyLimit: 200000
+
+  - name: Advanced
+    description: Higher throughput plan suited for analytics platforms and dApps with significant query volumes.
+    url: https://etherscan.io/apis?id=8453
+    price: 299.00
+    currency: USD
+    period: monthly
+    features:
+      - All supported EVM chains (50+)
+      - 20 API calls per second
+      - 500,000 API calls per day
+      - Pro endpoints included
+      - Escalated support
+    rateLimit:
+      requests: 20
+      period: second
+    dailyLimit: 500000
+
+  - name: Professional
+    description: High-volume plan for production-grade services requiring up to 1 million daily calls and 30 requests per second.
+    url: https://etherscan.io/apis?id=8453
+    price: 399.00
+    currency: USD
+    period: monthly
+    features:
+      - All supported EVM chains (50+)
+      - 30 API calls per second
+      - 1,000,000 API calls per day
+      - Pro endpoints included
+      - Escalated support
+    rateLimit:
+      requests: 30
+      period: second
+    dailyLimit: 1000000
+
+  - name: Pro Plus
+    description: Premium plan adding the Address Metadata endpoint and a further increase to daily call limits, for data-intensive blockchain applications.
+    url: https://etherscan.io/apis?id=8453
+    price: 899.00
+    currency: USD
+    period: monthly
+    features:
+      - All supported EVM chains (50+)
+      - 30 API calls per second
+      - 1,500,000 API calls per day
+      - Pro endpoints included
+      - Address Metadata endpoint
+      - Escalated support
+    rateLimit:
+      requests: 30
+      period: second
+    dailyLimit: 1500000
+
+  - name: Enterprise
+    description: Fully custom plan with unmetered calls, dedicated infrastructure, SLA guarantees, and direct engineering support. Contact Etherscan/Basescan for pricing.
+    url: https://etherscan.io/apis?id=8453
+    price: custom
+    currency: USD
+    period: monthly
+    features:
+      - All supported EVM chains (50+)
+      - Unmetered API calls per second
+      - Unmetered API calls per day
+      - Dedicated infrastructure
+      - SLA guarantees
+      - Pro endpoints included
+      - Address Metadata endpoint
+      - Priority engineering support
+    rateLimit:
+      requests: unmetered
+      period: second
+    dailyLimit: unmetered

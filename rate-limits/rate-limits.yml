@@ -1,0 +1,89 @@
+rateLimits:
+  - name: Free Tier Rate Limit
+    description: Default rate limit for free API key holders on the Basescan / Etherscan V2 platform.
+    plan: Free
+    requests: 3
+    period: second
+    dailyLimit: 100000
+    enforcement: HTTP 429 / JSON error status 0 with message "Max rate limit reached"
+
+  - name: Lite Tier Rate Limit
+    description: Rate limit for the Lite paid plan.
+    plan: Lite
+    requests: 5
+    period: second
+    dailyLimit: 100000
+    enforcement: HTTP 429 / JSON error status 0 with message "Max rate limit reached"
+
+  - name: Standard Tier Rate Limit
+    description: Rate limit for the Standard paid plan with Pro endpoint access.
+    plan: Standard
+    requests: 10
+    period: second
+    dailyLimit: 200000
+    enforcement: HTTP 429 / JSON error status 0 with message "Max rate limit reached"
+
+  - name: Advanced Tier Rate Limit
+    description: Rate limit for the Advanced paid plan.
+    plan: Advanced
+    requests: 20
+    period: second
+    dailyLimit: 500000
+    enforcement: HTTP 429 / JSON error status 0 with message "Max rate limit reached"
+
+  - name: Professional Tier Rate Limit
+    description: Rate limit for the Professional paid plan.
+    plan: Professional
+    requests: 30
+    period: second
+    dailyLimit: 1000000
+    enforcement: HTTP 429 / JSON error status 0 with message "Max rate limit reached"
+
+  - name: Pro Plus Tier Rate Limit
+    description: Rate limit for the Pro Plus paid plan.
+    plan: Pro Plus
+    requests: 30
+    period: second
+    dailyLimit: 1500000
+    enforcement: HTTP 429 / JSON error status 0 with message "Max rate limit reached"
+
+  - name: Enterprise Tier Rate Limit
+    description: Unmetered rate limit for Enterprise plan customers on dedicated infrastructure.
+    plan: Enterprise
+    requests: unmetered
+    period: second
+    dailyLimit: unmetered
+    enforcement: SLA-governed; contact support
+
+  - name: No API Key / Invalid API Key Rate Limit
+    description: Severely reduced rate applied when no API key is provided or the key is invalid. Returns status 1 with warning message rather than blocking the call outright.
+    plan: None
+    requests: 1
+    period: 5 seconds
+    dailyLimit: unspecified
+    enforcement: JSON status 1 with message "OK-Missing/Invalid API Key, rate limit of 1/5sec applied"
+
+errorCodes:
+  - code: '0'
+    message: Max rate limit reached
+    description: The caller has exceeded the allowed requests per second or per day for their plan.
+    httpStatus: 200
+    resolution: Back off and retry with exponential delay; upgrade plan for higher limits.
+
+  - code: '0'
+    message: Invalid API Key
+    description: The provided API key does not exist or has been revoked.
+    httpStatus: 200
+    resolution: Verify the API key at basescan.org/myapikey or generate a new one.
+
+  - code: '0'
+    message: Too many invalid api key attempts, please try again later
+    description: Repeated use of invalid API keys has triggered a temporary block.
+    httpStatus: 200
+    resolution: Wait before retrying; ensure the correct key is used.
+
+  - code: '1'
+    message: OK-Missing/Invalid API Key, rate limit of 1/5sec applied
+    description: Request succeeded but no valid API key was detected; degraded rate limit applied.
+    httpStatus: 200
+    resolution: Register for a free API key at basescan.org/myapikey and include it in requests.

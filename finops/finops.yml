@@ -1,0 +1,90 @@
+finops:
+  summary: >
+    Basescan API billing is managed through the Etherscan V2 unified platform.
+    All plans are billed monthly. The Free tier requires no payment and covers
+    the majority of use cases for development and testing. Paid plans are
+    differentiated primarily by requests-per-second throughput, daily call
+    volume, chain coverage, and access to Pro endpoints. A single Etherscan API
+    key (obtained via basescan.org or etherscan.io) covers Base (chain ID 8453)
+    and 50+ other EVM chains simultaneously, avoiding the need to purchase
+    separate subscriptions per network.
+
+  pricingPage: https://etherscan.io/apis?id=8453
+
+  costDrivers:
+    - name: Daily API Call Volume
+      description: The primary cost driver. Each plan includes a daily call ceiling ranging from 100,000 (Free/Lite) to 1,500,000 (Pro Plus) or unmetered (Enterprise). Exceeding the daily limit results in rate-limit errors until the counter resets.
+      unit: calls/day
+
+    - name: Requests Per Second Throughput
+      description: Plans are also differentiated by sustained throughput (3–30 calls/sec). Burst-heavy workloads such as block backfills or real-time monitoring should be sized to the calls/sec ceiling of their plan.
+      unit: calls/second
+
+    - name: Pro Endpoint Access
+      description: Advanced analytics endpoints (e.g., Address Metadata, Top Holders, Address Portfolio) are gated behind Standard and above plans ($199+/month).
+      unit: feature flag
+
+    - name: Chain Coverage
+      description: Free tier covers approx. 90% of supported chains. Full 50+ chain access requires at least the Lite plan ($49/month). Base (chain ID 8453) is covered on all tiers.
+      unit: feature flag
+
+  optimizationTips:
+    - Batch multiple address balance lookups using the multi-address balance endpoint to reduce per-query overhead.
+    - Cache contract ABI responses locally; ABIs rarely change after deployment.
+    - Use block-range filtering on transaction list endpoints to avoid re-fetching already-indexed data.
+    - For high-volume indexing jobs, schedule off-peak batch runs to spread daily call usage.
+    - Monitor daily usage via the API key dashboard at basescan.org/myapikey before hitting the ceiling.
+    - A single Etherscan V2 API key covers all EVM chains; avoid purchasing duplicate plan subscriptions for other Etherscan-family explorers.
+
+  plans:
+    - name: Free
+      monthlyUSD: 0
+      callsPerSecond: 3
+      callsPerDay: 100000
+      proEndpoints: false
+      allChains: false
+
+    - name: Lite
+      monthlyUSD: 49
+      callsPerSecond: 5
+      callsPerDay: 100000
+      proEndpoints: false
+      allChains: true
+
+    - name: Standard
+      monthlyUSD: 199
+      callsPerSecond: 10
+      callsPerDay: 200000
+      proEndpoints: true
+      allChains: true
+
+    - name: Advanced
+      monthlyUSD: 299
+      callsPerSecond: 20
+      callsPerDay: 500000
+      proEndpoints: true
+      allChains: true
+
+    - name: Professional
+      monthlyUSD: 399
+      callsPerSecond: 30
+      callsPerDay: 1000000
+      proEndpoints: true
+      allChains: true
+
+    - name: Pro Plus
+      monthlyUSD: 899
+      callsPerSecond: 30
+      callsPerDay: 1500000
+      proEndpoints: true
+      allChains: true
+      addressMetadata: true
+
+    - name: Enterprise
+      monthlyUSD: custom
+      callsPerSecond: unmetered
+      callsPerDay: unmetered
+      proEndpoints: true
+      allChains: true
+      dedicatedInfrastructure: true
+      sla: true

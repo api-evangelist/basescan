@@ -61,6 +61,10 @@ apis:
       - name: compatibleWith
         value: Etherscan API V2
 common:
+  - type: DomainSecurity
+    url: security/basescan-domain-security.yml
+  - type: Authentication
+    url: authentication/basescan-authentication.yml
   - type: Authentication
     url: https://basescan.org/myapikey
   - type: Plans

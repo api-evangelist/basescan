@@ -1,0 +1,732 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 71
+  by_action_class:
+    connected: 70
+    acting: 1
+  by_consequence:
+    read: 70
+    write: 1
+  human_in_the_loop_required: 0
+operations:
+- path: /?module=account&action=balance
+  method: get
+  operationId: get-ether-balance-for-a-single-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=balancemulti
+  method: get
+  operationId: get-ether-balance-for-multiple-addresses-in-a-single-call
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=txlist
+  method: get
+  operationId: get-a-list-of-normal-transactions-by-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=txlistinternal
+  method: get
+  operationId: get-a-list-of-internal-transactions-by-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=txlistinternal&get-internal-transactions-by-transaction-hash
+  method: get
+  operationId: get-internal-transactions-by-transaction-hash
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=txlistinternal&get-internal-transactions-by-block-range
+  method: get
+  operationId: get-internal-transactions-by-block-range
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=tokentx
+  method: get
+  operationId: get-a-list-of-erc20-token-transfer-events-by-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=tokennfttx
+  method: get
+  operationId: get-a-list-of-erc721-token-transfer-events-by-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=token1155tx
+  method: get
+  operationId: get-a-list-of-erc1155-token-transfer-events-by-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=getminedblocks
+  method: get
+  operationId: get-list-of-blocks-validated-by-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=txsBeaconWithdrawal
+  method: get
+  operationId: get-beacon-chain-withdrawals-by-address-and-block-range
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=balancehistory
+  method: get
+  operationId: get-historical-ether-balance-for-a-single-address-by-blockno
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=contract&action=getabi
+  method: get
+  operationId: get-contract-abi-for-verified-contract-source-codes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=contract&action=getsourcecode
+  method: get
+  operationId: get-contract-source-code-for-verified-contract-source-codes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=contract&action=getcontractcreation
+  method: get
+  operationId: get-contract-creator-and-creation-tx-hash
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=contract&action=verifysourcecode
+  method: post
+  operationId: verify-source-code
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /?module=contract&action=checkverifystatus
+  method: get
+  operationId: check-source-code-verification-status
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=transaction&action=getstatus
+  method: get
+  operationId: check-contract-execution-status
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=transaction&action=gettxreceiptstatus
+  method: get
+  operationId: check-transaction-receipt-status
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=block&action=getblockreward
+  method: get
+  operationId: get-block-and-uncle-rewards-by-blockno
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=block&action=getblockcountdown
+  method: get
+  operationId: get-estimated-block-countdown-time-by-blockno
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=block&action=getblocknobytime
+  method: get
+  operationId: get-block-number-by-timestamp
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyavgblocksize
+  method: get
+  operationId: get-daily-average-block-size
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyblkcount
+  method: get
+  operationId: get-daily-block-count-and-rewards
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyblockrewards
+  method: get
+  operationId: get-daily-block-rewards
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyavgblocktime
+  method: get
+  operationId: get-daily-average-time-for-a-block-to-be-included-in-the-ethereum-blockchain
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyuncleblkcount
+  method: get
+  operationId: get-daily-uncle-block-count-and-rewards
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=logs&action=getLogs
+  method: get
+  operationId: get-event-logs-by-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=logs&action=getLogs&get-event-logs-by-topics
+  method: get
+  operationId: get-event-logs-by-topics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=logs&action=getLogs&get-event-logs-by-address-filtered-by-topics
+  method: get
+  operationId: get-event-logs-by-address-filtered-by-topics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_blockNumber
+  method: get
+  operationId: eth_blocknumber
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getBlockByNumber
+  method: get
+  operationId: eth_getblockbynumber
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getUncleByBlockNumberAndIndex
+  method: get
+  operationId: eth_getunclebyblocknumberandindex
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getBlockTransactionCountByNumber
+  method: get
+  operationId: eth_getblocktransactioncountbynumber
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getTransactionByHash
+  method: get
+  operationId: eth_gettransactionbyhash
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getTransactionByBlockNumberAndIndex
+  method: get
+  operationId: eth_gettransactionbyblocknumberandindex
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getTransactionCount
+  method: get
+  operationId: eth_gettransactioncount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_sendRawTransaction
+  method: get
+  operationId: eth_sendrawtransaction
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getTransactionReceipt
+  method: get
+  operationId: eth_gettransactionreceipt
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_call
+  method: get
+  operationId: eth_call
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getCode
+  method: get
+  operationId: eth_getcode
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_getStorageAt
+  method: get
+  operationId: eth_getstorageat
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_gasPrice
+  method: get
+  operationId: eth_gasprice
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=proxy&action=eth_estimateGas
+  method: get
+  operationId: eth_estimategas
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=tokensupply
+  method: get
+  operationId: get-erc20-token-totalsupply-by-contractaddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=tokenbalance
+  method: get
+  operationId: get-erc20-token-account-balance-for-tokencontractaddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=tokensupplyhistory
+  method: get
+  operationId: get-historical-erc20-token-totalsupply-by-contractaddress-and-blockno
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=tokenbalancehistory
+  method: get
+  operationId: get-historical-erc20-token-account-balance-for-tokencontractaddress-by-blockno
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=token&action=tokenholderlist
+  method: get
+  operationId: get-token-holder-list-by-contract-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=token&action=tokeninfo
+  method: get
+  operationId: get-token-info-by-contractaddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=addresstokenbalance
+  method: get
+  operationId: get-address-erc20-token-holding
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=addresstokennftbalance
+  method: get
+  operationId: get-address-erc721-token-holding
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=account&action=addresstokennftinventory
+  method: get
+  operationId: get-address-erc721-token-inventory-by-contract-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=gastracker&action=gasestimate
+  method: get
+  operationId: get-estimation-of-confirmation-time
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=gastracker&action=gasoracle
+  method: get
+  operationId: get-gas-oracle
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyavggaslimit
+  method: get
+  operationId: get-daily-average-gas-limit
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailygasused
+  method: get
+  operationId: get-ethereum-daily-total-gas-used
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyavggasprice
+  method: get
+  operationId: get-daily-average-gas-price
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=ethsupply
+  method: get
+  operationId: get-total-supply-of-ether
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=ethsupply2
+  method: get
+  operationId: get-total-supply-of-ether-2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=ethprice
+  method: get
+  operationId: get-ether-last-price
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=chainsize
+  method: get
+  operationId: get-ethereum-nodes-size
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=nodecount
+  method: get
+  operationId: get-total-nodes-count
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailytxnfee
+  method: get
+  operationId: get-daily-network-transaction-fee
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailynewaddress
+  method: get
+  operationId: get-daily-new-address-count
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailynetutilization
+  method: get
+  operationId: get-daily-network-utilization
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyavghashrate
+  method: get
+  operationId: get-daily-average-network-hash-rate
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailytx
+  method: get
+  operationId: get-daily-transaction-count
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=dailyavgnetdifficulty
+  method: get
+  operationId: get-daily-average-network-difficulty
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=ethdailymarketcap
+  method: get
+  operationId: get-ether-historical-daily-market-cap
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /?module=stats&action=ethdailyprice
+  method: get
+  operationId: get-ether-historical-price
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

@@ -1,0 +1,560 @@
+openapi: 3.1.0
+info:
+  title: Basescan Accounts Blocks API
+  version: 1.0.0
+  description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
+  license:
+    name: UNLICENSED
+    url: https://docs.basescan.org/
+servers:
+- url: https://api.basescan.org/api
+  description: Base Mainnet Endpoint
+- url: https://api-sepolia.basescan.org/api
+  description: Base Sepolia Testnet Endpoint
+security:
+- apiKeyAuth: []
+tags:
+- name: Blocks
+paths:
+  /?module=block&action=getblockreward:
+    get:
+      operationId: get-block-and-uncle-rewards-by-blockno
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/blocks#get-block-and-uncle-rewards-by-blockno
+      summary: Get Block And Uncle Rewards by BlockNo
+      description: Returns the block reward and 'Uncle' block rewards.
+      tags:
+      - Blocks
+      parameters:
+      - in: query
+        name: blockno
+        schema:
+          $ref: '#/components/schemas/IntegerMin0'
+        required: true
+        example: '2165403'
+      responses:
+        '200':
+          description: 'Operation result. ​​ ⏳ Tip : The timestamp field is denoted in Unix timestamp.'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.block.getblockreward'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                  blockNumber: '2165403'
+                  timeStamp: '1472533979'
+                  blockMiner: '0x13a06d3dfe21e0db5c016c03ea7d2509f7f8d1e3'
+                  blockReward: '5314181600000000000'
+                  uncles:
+                  - miner: '0xbcdfc35b86bedf72f0cda046a3c16829a2ef41d1'
+                    unclePosition: '0'
+                    blockreward: '3750000000000000000'
+                  - miner: '0x0d0c9855c722ff0c78f21e43aa275a5b8ea60dce'
+                    unclePosition: '1'
+                    blockreward: '3750000000000000000'
+                  uncleInclusionReward: '312500000000000000'
+  /?module=block&action=getblockcountdown:
+    get:
+      operationId: get-estimated-block-countdown-time-by-blockno
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/blocks#get-estimated-block-countdown-time-by-blockno
+      summary: Get Estimated Block Countdown Time by BlockNo
+      description: Returns the estimated time remaining, in seconds, until a certain block is mined.
+      tags:
+      - Blocks
+      parameters:
+      - in: query
+        name: blockno
+        schema:
+          $ref: '#/components/schemas/IntegerMin0'
+        required: true
+        example: '16701588'
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.block.getblockcountdown'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                  CurrentBlock: '12715477'
+                  CountdownBlock: '16701588'
+                  RemainingBlock: '3986111'
+                  EstimateTimeInSec: '52616680.2'
+  /?module=block&action=getblocknobytime:
+    get:
+      operationId: get-block-number-by-timestamp
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/blocks#get-block-number-by-timestamp
+      summary: Get Block Number by Timestamp
+      description: Returns the block number that was mined at a certain timestamp.
+      tags:
+      - Blocks
+      parameters:
+      - in: query
+        name: timestamp
+        schema:
+          $ref: '#/components/schemas/UnixTimestamp'
+        required: true
+        example: '1578638524'
+      - in: query
+        name: closest
+        schema:
+          $ref: '#/components/schemas/BlockClosest'
+        required: true
+        example: before
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.block.getblocknobytime'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result: '12712551'
+  /?module=stats&action=dailyavgblocksize:
+    get:
+      operationId: get-daily-average-block-size
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/blocks#get-daily-average-block-size
+      summary: Get Daily Average Block Size
+      description: Returns the daily average block size within a date range. PRO endpoint.
+      tags:
+      - Blocks
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyavgblocksize'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  blockSize_bytes: 20373
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  blockSize_bytes: 25117
+  /?module=stats&action=dailyblkcount:
+    get:
+      operationId: get-daily-block-count-and-rewards
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/blocks#get-daily-block-count-and-rewards
+      summary: Get Daily Block Count and Rewards
+      description: Returns the number of blocks mined daily and the amount of block rewards. PRO endpoint.
+      tags:
+      - Blocks
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyblkcount'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  blockCount: 4848
+                  blockRewards_Eth: '14929.464690870590355682'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  blockCount: 4366
+                  blockRewards_Eth: '12808.485512162356907132'
+  /?module=stats&action=dailyblockrewards:
+    get:
+      operationId: get-daily-block-rewards
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/blocks#get-daily-block-rewards
+      summary: Get Daily Block Rewards
+      description: Returns the amount of block rewards distributed to miners daily. PRO endpoint.
+      tags:
+      - Blocks
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyblockrewards'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  blockRewards_Eth: '15300.65625'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  blockRewards_Eth: '12954.84375'
+  /?module=stats&action=dailyavgblocktime:
+    get:
+      operationId: get-daily-average-time-for-a-block-to-be-included-in-the-ethereum-blockchain
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/blocks#get-daily-average-time-for-a-block-to-be-included-in-the-ethereum-blockchain
+      summary: Get Daily Average Time for A Block to be Included in the Ethereum Blockchain
+      description: Returns the daily average of time needed for a block to be successfully mined. PRO endpoint.
+      tags:
+      - Blocks
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyavgblocktime'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  blockTime_sec: '17.67'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  blockTime_sec: '19.61'
+  /?module=stats&action=dailyuncleblkcount:
+    get:
+      operationId: get-daily-uncle-block-count-and-rewards
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/blocks#get-daily-uncle-block-count-and-rewards
+      summary: Get Daily Uncle Block Count and Rewards
+      description: Returns the number of 'Uncle' blocks mined daily and the amount of 'Uncle' block rewards. PRO endpoint.
+      tags:
+      - Blocks
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyuncleblkcount'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  uncleBlockCount: 287
+                  uncleBlockRewards_Eth: '729.75'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  uncleBlockCount: 288
+                  uncleBlockRewards_Eth: '691.5'
+components:
+  schemas:
+    IntegerMin0:
+      type: integer
+      minimum: 0
+    UnixTimestampString:
+      type: string
+      description: A Unix timestamp representing the number of seconds since January 1, 1970, expressed as a string.
+      pattern: ^[0-9]+$
+      example: '1623338323'
+    UnixTimestamp:
+      type: integer
+      format: int64
+      description: A Unix timestamp representing the number of seconds since January 1, 1970
+      example: 1623338323
+      minimum: 0
+    BlockClosest:
+      type: string
+      enum:
+      - before
+      - after
+    Result.block.getblocknobytime:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
+    Result.stats.dailyavgblocktime:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              blockTime_sec:
+                $ref: '#/components/schemas/FloatString'
+    DateYYYYMMDD:
+      type: string
+      format: date
+      description: A date in the YYYY-MM-DD format
+      example: '2019-02-01'
+    FloatString:
+      type: string
+      pattern: ^\d+(\.\d+)?$
+      description: A float represented as a string.
+    Result.block.getblockcountdown:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            CurrentBlock:
+              $ref: '#/components/schemas/IntegerMin0String'
+            CountdownBlock:
+              $ref: '#/components/schemas/IntegerMin0String'
+            RemainingBlock:
+              $ref: '#/components/schemas/IntegerMin0String'
+            EstimateTimeInSec:
+              $ref: '#/components/schemas/FloatString'
+    Result.stats.dailyuncleblkcount:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              uncleBlockCount:
+                $ref: '#/components/schemas/IntegerMin0'
+              uncleBlockRewards_Eth:
+                $ref: '#/components/schemas/FloatString'
+    Result.block.getblockreward:
+      type: object
+      additionalProperties: true
+    PageSort:
+      type: string
+      enum:
+      - asc
+      - desc
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    Result.stats.dailyblockrewards:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              blockRewards_Eth:
+                $ref: '#/components/schemas/FloatString'
+    ResponseNOTOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '0'
+        message:
+          type: string
+          pattern: ^NOTOK(-.*)?$
+          examples:
+          - NOTOK
+          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
+        result:
+          type: string
+      required:
+      - status
+      - message
+      - result
+    Result.stats.dailyavgblocksize:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              blockSize_bytes:
+                $ref: '#/components/schemas/IntegerMin0'
+    Result.stats.dailyblkcount:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              blockCount:
+                $ref: '#/components/schemas/IntegerMin0'
+              blockRewards_Eth:
+                $ref: '#/components/schemas/FloatString'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  url: https://docs.basescan.org/

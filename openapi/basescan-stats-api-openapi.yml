@@ -1,0 +1,837 @@
+openapi: 3.1.0
+info:
+  title: Basescan Accounts Stats API
+  version: 1.0.0
+  description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
+  license:
+    name: UNLICENSED
+    url: https://docs.basescan.org/
+servers:
+- url: https://api.basescan.org/api
+  description: Base Mainnet Endpoint
+- url: https://api-sepolia.basescan.org/api
+  description: Base Sepolia Testnet Endpoint
+security:
+- apiKeyAuth: []
+tags:
+- name: Stats
+paths:
+  /?module=stats&action=ethsupply:
+    get:
+      operationId: get-total-supply-of-ether
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-total-supply-of-ether
+      summary: Get Total Supply of Ether
+      description: Returns the current amount of Ether in circulation excluding ETH2 Staking rewards and EIP1559 burnt fees.
+      tags:
+      - Stats
+      parameters: []
+      responses:
+        '200':
+          description: 'Operation result. 📖 Tip : Easily convert Ethereum units using our unit converter.'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.ethsupply'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result: '116487067186500000000000000'
+  /?module=stats&action=ethsupply2:
+    get:
+      operationId: get-total-supply-of-ether-2
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-total-supply-of-ether-2
+      summary: Get Total Supply of Ether 2
+      description: Returns the current amount of Ether in circulation, ETH2 Staking rewards, EIP1559 burnt fees, and total withdrawn ETH from the beacon chain.
+      tags:
+      - Stats
+      parameters: []
+      responses:
+        '200':
+          description: 'Operation result. 📝 Note: The EthSupply is calculated before adding ETH minted as Eth2Staking rewards and subtracting BurntFees from EIP-1559. For more information, check out our Ether Total Supply Dashboard.'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.ethsupply2'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                  EthSupply: '122373866217800000000000000'
+                  Eth2Staking: '1157529105115885000000000'
+                  BurntFees: '3102505506455601519229842'
+                  WithdrawnTotal: '1170200333006131000000000'
+  /?module=stats&action=ethprice:
+    get:
+      operationId: get-ether-last-price
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-ether-last-price
+      summary: Get Ether Last Price
+      description: Returns the latest price of 1 ETH.
+      tags:
+      - Stats
+      parameters: []
+      responses:
+        '200':
+          description: 'Operation result. ⏳ Tip : The timestamps are represented in Unix timestamp.'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.ethprice'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                  ethbtc: '0.06116'
+                  ethbtc_timestamp: '1624961308'
+                  ethusd: '2149.18'
+                  ethusd_timestamp: '1624961308'
+  /?module=stats&action=chainsize:
+    get:
+      operationId: get-ethereum-nodes-size
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-ethereum-nodes-size
+      summary: Get Ethereum Nodes Size
+      description: Returns the size of the Ethereum blockchain, in bytes, over a date range.
+      tags:
+      - Stats
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: clienttype
+        schema:
+          $ref: '#/components/schemas/ClientType'
+        required: true
+        example: geth
+      - in: query
+        name: syncmode
+        schema:
+          $ref: '#/components/schemas/SyncMode'
+        required: true
+        example: default
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: 'Operation result. ⛓️ Tip : The chainSize is represented in bytes.'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.chainsize'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - blockNumber: '7156164'
+                  chainTimeStamp: '2019-02-01'
+                  chainSize: '184726421279'
+                  clientType: Geth
+                  syncMode: Default
+                - blockNumber: '7276521'
+                  chainTimeStamp: '2019-02-28'
+                  chainSize: '197073145113'
+                  clientType: Geth
+                  syncMode: Default
+  /?module=stats&action=nodecount:
+    get:
+      operationId: get-total-nodes-count
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-total-nodes-count
+      summary: Get Total Nodes Count
+      description: Returns the total number of discoverable Ethereum nodes.
+      tags:
+      - Stats
+      parameters: []
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.nodecount'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                  UTCDate: '2021-06-29'
+                  TotalNodeCount: '6413'
+  /?module=stats&action=dailytxnfee:
+    get:
+      operationId: get-daily-network-transaction-fee
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-daily-network-transaction-fee
+      summary: Get Daily Network Transaction Fee
+      description: Returns the amount of transaction fees paid to miners per day. PRO endpoint.
+      tags:
+      - Stats
+      parameters: []
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailytxnfee'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  transactionFee_Eth: '358.558440870590355682'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  transactionFee_Eth: '545.141762162356907132'
+  /?module=stats&action=dailynewaddress:
+    get:
+      operationId: get-daily-new-address-count
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-daily-new-address-count
+      summary: Get Daily New Address Count
+      description: Returns the number of new Ethereum addresses created per day. PRO endpoint.
+      tags:
+      - Stats
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailynewaddress'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  newAddressCount: 54081
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  newAddressCount: 53117
+  /?module=stats&action=dailynetutilization:
+    get:
+      operationId: get-daily-network-utilization
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-daily-network-utilization
+      summary: Get Daily Network Utilization
+      description: Returns the daily average gas used over gas limit, in percentage. PRO endpoint.
+      tags:
+      - Stats
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailynetutilization'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  networkUtilization: '0.8464'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  networkUtilization: '0.9472'
+  /?module=stats&action=dailyavghashrate:
+    get:
+      operationId: get-daily-average-network-hash-rate
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-daily-average-network-hash-rate
+      summary: Get Daily Average Network Hash Rate
+      description: Returns the historical measure of processing power of the Ethereum network. PRO endpoint.
+      tags:
+      - Stats
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: 'Operation result. 🔥 Tip : The networkHashRate is represented in GigaHashes ( GH/s ).'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyavghashrate'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  networkHashRate: '143116.0140'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  networkHashRate: '157689.3983'
+  /?module=stats&action=dailytx:
+    get:
+      operationId: get-daily-transaction-count
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-daily-transaction-count
+      summary: Get Daily Transaction Count
+      description: Returns the number of transactions performed on the Ethereum blockchain per day. PRO endpoint.
+      tags:
+      - Stats
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailytx'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  transactionCount: 498856
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  transactionCount: 541458
+  /?module=stats&action=dailyavgnetdifficulty:
+    get:
+      operationId: get-daily-average-network-difficulty
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-daily-average-network-difficulty
+      summary: Get Daily Average Network Difficulty
+      description: Returns the historical mining difficulty of the Ethereum network. PRO endpoint.
+      tags:
+      - Stats
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: 'Operation result. ​​ 🔥 Tip : The networkDifficulty is represented in TeraHashes ( TH/s ).'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyavgnetdifficulty'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  networkDifficulty: 2,408.028
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  networkDifficulty: 2,927.453
+  /?module=stats&action=ethdailymarketcap:
+    get:
+      operationId: get-ether-historical-daily-market-cap
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-ether-historical-daily-market-cap
+      summary: Get Ether Historical Daily Market Cap
+      description: Returns the historical Ether daily market capitalization. PRO endpoint.
+      tags:
+      - Stats
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: 'Operation result. ​​ 💰 Tip : The marketCap is represented in million US Dollars ( USD ).'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.ethdailymarketcap'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  supply: '104672819.281250'
+                  marketCap: '11203.1318476721875'
+                  price: '107.03'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  supply: '105048576.406250'
+                  marketCap: '14317.0704784078125'
+                  price: '136.29'
+  /?module=stats&action=ethdailyprice:
+    get:
+      operationId: get-ether-historical-price
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/stats-1#get-ether-historical-price
+      summary: Get Ether Historical Price
+      description: Returns the historical price of 1 ETH. PRO endpoint.
+      tags:
+      - Stats
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: 'Operation result. ​​ 💰 Tip : The value is represented in US Dollars ( USD ).'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.ethdailyprice'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  value: '107.03'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  value: '136.29'
+components:
+  schemas:
+    SyncMode:
+      type: string
+      enum:
+      - default
+      - Default
+      - archive
+      - Archive
+    Result.stats.ethdailyprice:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              value:
+                $ref: '#/components/schemas/FloatString'
+    Result.stats.dailytxnfee:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              transactionFee_Eth:
+                $ref: '#/components/schemas/FloatString'
+    Result.stats.dailytx:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              transactionCount:
+                $ref: '#/components/schemas/IntegerMin0'
+    Result.stats.dailyavghashrate:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              networkHashRate:
+                $ref: '#/components/schemas/FloatString'
+    Result.stats.chainsize:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              blockNumber:
+                $ref: '#/components/schemas/IntegerMin0String'
+              chainTimeStamp:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              chainSize:
+                $ref: '#/components/schemas/IntegerMin0String'
+              clientType:
+                $ref: '#/components/schemas/ClientType'
+              syncMode:
+                $ref: '#/components/schemas/SyncMode'
+    PageSort:
+      type: string
+      enum:
+      - asc
+      - desc
+    ClientType:
+      type: string
+      enum:
+      - geth
+      - Geth
+      - parity
+      - Parity
+    FloatString:
+      type: string
+      pattern: ^\d+(\.\d+)?$
+      description: A float represented as a string.
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    Result.stats.ethprice:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            ethbtc:
+              $ref: '#/components/schemas/FloatString'
+            ethbtc_timestamp:
+              $ref: '#/components/schemas/UnixTimestampString'
+            ethusd:
+              $ref: '#/components/schemas/FloatString'
+            ethusd_timestamp:
+              $ref: '#/components/schemas/UnixTimestampString'
+    Result.stats.ethsupply2:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            EthSupply:
+              $ref: '#/components/schemas/IntegerMin0String'
+            Eth2Staking:
+              $ref: '#/components/schemas/IntegerMin0String'
+            BurntFees:
+              $ref: '#/components/schemas/IntegerMin0String'
+            WithdrawnTotal:
+              $ref: '#/components/schemas/IntegerMin0String'
+    UnixTimestampString:
+      type: string
+      description: A Unix timestamp representing the number of seconds since January 1, 1970, expressed as a string.
+      pattern: ^[0-9]+$
+      example: '1623338323'
+    Result.stats.dailynetutilization:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              networkUtilization:
+                $ref: '#/components/schemas/FloatString'
+    Result.stats.nodecount:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            UTCDate:
+              $ref: '#/components/schemas/DateYYYYMMDD'
+            TotalNodeCount:
+              $ref: '#/components/schemas/IntegerMin0String'
+    Result.stats.ethsupply:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
+    Result.stats.dailynewaddress:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              newAddressCount:
+                $ref: '#/components/schemas/IntegerMin0'
+    Result.stats.ethdailymarketcap:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              supply:
+                $ref: '#/components/schemas/FloatString'
+              marketCap:
+                $ref: '#/components/schemas/FloatString'
+              price:
+                $ref: '#/components/schemas/FloatString'
+    IntegerMin0:
+      type: integer
+      minimum: 0
+    Result.stats.dailyavgnetdifficulty:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              networkDifficulty:
+                $ref: '#/components/schemas/FloatWithCommasString'
+    DateYYYYMMDD:
+      type: string
+      format: date
+      description: A date in the YYYY-MM-DD format
+      example: '2019-02-01'
+    FloatWithCommasString:
+      type: string
+      pattern: ^\d{1,3}(,?\d{3})*(\.\d+)?$
+      description: A float represented as a string, with optional comma delimiters
+    ResponseNOTOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '0'
+        message:
+          type: string
+          pattern: ^NOTOK(-.*)?$
+          examples:
+          - NOTOK
+          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
+        result:
+          type: string
+      required:
+      - status
+      - message
+      - result
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  url: https://docs.basescan.org/

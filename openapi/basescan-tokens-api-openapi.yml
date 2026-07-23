@@ -1,0 +1,614 @@
+openapi: 3.1.0
+info:
+  title: Basescan Accounts Tokens API
+  version: 1.0.0
+  description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
+  license:
+    name: UNLICENSED
+    url: https://docs.basescan.org/
+servers:
+- url: https://api.basescan.org/api
+  description: Base Mainnet Endpoint
+- url: https://api-sepolia.basescan.org/api
+  description: Base Sepolia Testnet Endpoint
+security:
+- apiKeyAuth: []
+tags:
+- name: Tokens
+paths:
+  /?module=stats&action=tokensupply:
+    get:
+      operationId: get-erc20-token-totalsupply-by-contractaddress
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-erc20-token-totalsupply-by-contractaddress
+      summary: Get ERC20-Token TotalSupply by ContractAddress
+      description: Returns the current amount of an ERC-20 token in circulation.
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: contractaddress
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0x57d90b64a1a57749b0f932f1a3395792e12e7055'
+      responses:
+        '200':
+          description: 'Operation result. 📈 Tip : The result is returned in the token''s smallest decimal representation.Eg. a token with a balance of 215.241526476136819398 and 18 decimal places will be returned as 215241526476136819398'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.tokensupply'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result: '21265524714464'
+  /?module=account&action=tokenbalance:
+    get:
+      operationId: get-erc20-token-account-balance-for-tokencontractaddress
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-erc20-token-account-balance-for-tokencontractaddress
+      summary: Get ERC20-Token Account Balance for TokenContractAddress
+      description: Returns the current balance of an ERC-20 token of an address.
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: contractaddress
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0x57d90b64a1a57749b0f932f1a3395792e12e7055'
+      - in: query
+        name: address
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0xe04f27eb70e025b78871a2ad7eabe85e61212761'
+      responses:
+        '200':
+          description: 'Operation result. 📈 Tip : The result is returned in the token''s smallest decimal representation.Eg. a token with a balance of 215.241526476136819398 and 18 decimal places will be returned as 215241526476136819398'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.account.tokenbalance'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result: '135499'
+  /?module=stats&action=tokensupplyhistory:
+    get:
+      operationId: get-historical-erc20-token-totalsupply-by-contractaddress-and-blockno
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-historical-erc20-token-totalsupply-by-contractaddress-and-blockno
+      summary: Get Historical ERC20-Token TotalSupply by ContractAddress & BlockNo
+      description: 'Returns the amount of an ERC-20 token in circulation at a certain block height. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint.'
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: contractaddress
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0x57d90b64a1a57749b0f932f1a3395792e12e7055'
+      - in: query
+        name: blockno
+        schema:
+          $ref: '#/components/schemas/IntegerMin0'
+        required: true
+        example: '8000000'
+      responses:
+        '200':
+          description: 'Operation result. 📈 Tip : The result is returned in the token''s smallest decimal representation.Eg. a token with a balance of 215.241526476136819398 and 18 decimal places will be returned as 215241526476136819398'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.tokensupplyhistory'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result: '21265524714464'
+  /?module=account&action=tokenbalancehistory:
+    get:
+      operationId: get-historical-erc20-token-account-balance-for-tokencontractaddress-by-blockno
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-historical-erc20-token-account-balance-for-tokencontractaddress-by-blockno
+      summary: Get Historical ERC20-Token Account Balance for TokenContractAddress by BlockNo
+      description: 'Returns the balance of an ERC-20 token of an address at a certain block height. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint.'
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: contractaddress
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0x57d90b64a1a57749b0f932f1a3395792e12e7055'
+      - in: query
+        name: address
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0xe04f27eb70e025b78871a2ad7eabe85e61212761'
+      - in: query
+        name: blockno
+        schema:
+          $ref: '#/components/schemas/IntegerMin0'
+        required: true
+        example: '8000000'
+      responses:
+        '200':
+          description: 'Operation result. 📈 Tip : The result is returned in the token''s smallest decimal representation.Eg. a token with a balance of 215.241526476136819398 and 18 decimal places will be returned as 215241526476136819398'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.account.tokenbalancehistory'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result: '135499'
+  /?module=token&action=tokenholderlist:
+    get:
+      operationId: get-token-holder-list-by-contract-address
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-token-holder-list-by-contract-address
+      summary: Get Token Holder List by Contract Address
+      description: Return the current ERC20 token holders and number of tokens held.
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: contractaddress
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d'
+      - in: query
+        name: page
+        schema:
+          $ref: '#/components/schemas/IntegerMin1'
+        required: false
+        example: '1'
+      - in: query
+        name: offset
+        schema:
+          $ref: '#/components/schemas/IntegerMin1'
+        required: false
+        example: '10'
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.token.tokenholderlist'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - TokenHolderAddress: '0x0000000000000000000000000000000000000000'
+                  TokenHolderQuantity: '34956'
+                - TokenHolderAddress: '0x000000000000084e91743124a982076c59f10084'
+                  TokenHolderQuantity: '1'
+                - TokenHolderAddress: '0x0000000000000d9054f605ca65a2647c2b521422'
+                  TokenHolderQuantity: '10000000'
+                - TokenHolderAddress: '0x0000000000002d534ff79e9c69e7fcc742f0be83'
+                  TokenHolderQuantity: '5'
+                - TokenHolderAddress: '0x0000000000003f5e74c1ba8a66b48e6f3d71ae82'
+                  TokenHolderQuantity: '1'
+  /?module=token&action=tokeninfo:
+    get:
+      operationId: get-token-info-by-contractaddress
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-token-info-by-contractaddress
+      summary: Get Token Info by ContractAddress
+      description: 'Returns project information and social media links of an ERC20/ERC721/ERC1155 token. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint.'
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: contractaddress
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0x0e3a2a1f2146d86a604adc220b4967a898d7fe07'
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.token.tokeninfo'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - contractAddress: '0x0e3a2a1f2146d86a604adc220b4967a898d7fe07'
+                  tokenName: Gods Unchained Cards
+                  symbol: CARD
+                  divisor: '0'
+                  tokenType: ERC721
+                  totalSupply: '6962498'
+                  blueCheckmark: 'true'
+                  description: A TCG on the Ethereum blockchain that uses NFT's to bring real ownership to in-game assets.
+                  website: https://godsunchained.com/
+                  email: ''
+                  blog: https://medium.com/@fuelgames
+                  reddit: https://www.reddit.com/r/GodsUnchained/
+                  slack: ''
+                  facebook: https://www.facebook.com/godsunchained/
+                  twitter: https://twitter.com/godsunchained
+                  bitcointalk: ''
+                  github: ''
+                  telegram: ''
+                  wechat: ''
+                  linkedin: ''
+                  discord: https://discordapp.com/invite/DKGr2pW
+                  whitepaper: ''
+                  tokenPriceUSD: '0.000000000000000000'
+  /?module=account&action=addresstokenbalance:
+    get:
+      operationId: get-address-erc20-token-holding
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-address-erc20-token-holding
+      summary: Get Address ERC20 Token Holding
+      description: 'Returns the ERC-20 tokens and amount held by an address. Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier.'
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: address
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0x983e3660c0bE01991785F80f266A84B911ab59b0'
+      - in: query
+        name: page
+        schema:
+          $ref: '#/components/schemas/IntegerMin1'
+        required: false
+        example: '1'
+      - in: query
+        name: offset
+        schema:
+          $ref: '#/components/schemas/IntegerMin1'
+        required: false
+        example: '100'
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.account.addresstokenbalance'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - TokenAddress: '0xffffffff2ba8f66d4e51811c5190992176930278'
+                  TokenName: Furucombo
+                  TokenSymbol: COMBO
+                  TokenQuantity: '1861606940000000000'
+                  TokenDivisor: '18'
+                - TokenAddress: '0x53a1e9912323b8016424d6287286e3b6de263f76'
+                  TokenName: PUTIN Token
+                  TokenSymbol: PTT
+                  TokenQuantity: '3500000000000000000000'
+                  TokenDivisor: '18'
+                - TokenAddress: '0xb753428af26e81097e7fd17f40c88aaa3e04902c'
+                  TokenName: Spice
+                  TokenSymbol: SFI
+                  TokenQuantity: '7'
+                  TokenDivisor: '18'
+                - TokenAddress: '0x1b40183efb4dd766f11bda7a7c3ad8982e998421'
+                  TokenName: VesperToken
+                  TokenSymbol: VSP
+                  TokenQuantity: '962'
+                  TokenDivisor: '18'
+                - TokenAddress: '0x37e83a94c6b1bdb816b59ac71dd02cf154d8111f'
+                  TokenName: PhotoChromic
+                  TokenSymbol: PHCR
+                  TokenQuantity: '4608452961264910063288'
+                  TokenDivisor: '18'
+  /?module=account&action=addresstokennftbalance:
+    get:
+      operationId: get-address-erc721-token-holding
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-address-erc721-token-holding
+      summary: Get Address ERC721 Token Holding
+      description: 'Returns the ERC-721 tokens and amount held by an address. Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier.'
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: address
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0x6b52e83941eb10f9c613c395a834457559a80114'
+      - in: query
+        name: page
+        schema:
+          $ref: '#/components/schemas/IntegerMin1'
+        required: false
+        example: '1'
+      - in: query
+        name: offset
+        schema:
+          $ref: '#/components/schemas/IntegerMin1'
+        required: false
+        example: '100'
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.account.addresstokennftbalance'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - TokenAddress: '0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b'
+                  TokenName: CloneX
+                  TokenSymbol: CloneX
+                  TokenQuantity: '52'
+                - TokenAddress: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
+                  TokenName: BoredApeYachtClub
+                  TokenSymbol: BAYC
+                  TokenQuantity: '1'
+                - TokenAddress: '0x60e4d786628fea6478f785a6d7e704777c86a7c6'
+                  TokenName: MutantApeYachtClub
+                  TokenSymbol: MAYC
+                  TokenQuantity: '1'
+                - TokenAddress: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+                  TokenName: Azuki
+                  TokenSymbol: AZUKI
+                  TokenQuantity: '1'
+                - TokenAddress: '0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7'
+                  TokenName: Meebits
+                  TokenSymbol: ⚇
+                  TokenQuantity: '1'
+  /?module=account&action=addresstokennftinventory:
+    get:
+      operationId: get-address-erc721-token-inventory-by-contract-address
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/tokens#get-address-erc721-token-inventory-by-contract-address
+      summary: Get Address ERC721 Token Inventory By Contract Address
+      description: 'Returns the ERC-721 token inventory of an address, filtered by contract address. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier.'
+      tags:
+      - Tokens
+      parameters:
+      - in: query
+        name: address
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0x123432244443b54409430979df8333f9308a6040'
+      - in: query
+        name: contractaddress
+        schema:
+          $ref: '#/components/schemas/AddressHash'
+        required: true
+        example: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+      - in: query
+        name: page
+        schema:
+          $ref: '#/components/schemas/IntegerMin1'
+        required: false
+        example: '1'
+      - in: query
+        name: offset
+        schema:
+          $ref: '#/components/schemas/IntegerMin1Max1000'
+        required: false
+        example: '100'
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.account.addresstokennftinventory'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - TokenAddress: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+                  TokenId: '5401'
+                - TokenAddress: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+                  TokenId: '7411'
+                - TokenAddress: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+                  TokenId: '453'
+                - TokenAddress: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+                  TokenId: '8080'
+                - TokenAddress: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+                  TokenId: '4255'
+components:
+  schemas:
+    IntegerMin0:
+      type: integer
+      minimum: 0
+    Result.account.addresstokenbalance:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              TokenAddress:
+                $ref: '#/components/schemas/AddressHash'
+              TokenName:
+                type: string
+              TokenSymbol:
+                type: string
+              TokenQuantity:
+                $ref: '#/components/schemas/IntegerMin0String'
+              TokenDivisor:
+                $ref: '#/components/schemas/IntegerMin0String'
+    Result.token.tokeninfo:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          maxItems: 1
+    IntegerMin1Max1000:
+      type: integer
+      format: int32
+      minimum: 1
+      maximum: 1000
+    Result.account.tokenbalancehistory:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    Result.account.addresstokennftinventory:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              TokenAddress:
+                $ref: '#/components/schemas/AddressHash'
+              TokenId:
+                $ref: '#/components/schemas/IntegerMin0String'
+    Result.token.tokenholderlist:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              TokenHolderAddress:
+                $ref: '#/components/schemas/AddressHash'
+              TokenHolderQuantity:
+                $ref: '#/components/schemas/IntegerMin0String'
+    Result.account.addresstokennftbalance:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              TokenAddress:
+                $ref: '#/components/schemas/AddressHash'
+              TokenName:
+                type: string
+              TokenSymbol:
+                type: string
+              TokenQuantity:
+                $ref: '#/components/schemas/IntegerMin0String'
+    Result.stats.tokensupplyhistory:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    Result.stats.tokensupply:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    Result.account.tokenbalance:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    IntegerMin1:
+      type: integer
+      minimum: 1
+    ResponseNOTOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '0'
+        message:
+          type: string
+          pattern: ^NOTOK(-.*)?$
+          examples:
+          - NOTOK
+          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
+        result:
+          type: string
+      required:
+      - status
+      - message
+      - result
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  url: https://docs.basescan.org/

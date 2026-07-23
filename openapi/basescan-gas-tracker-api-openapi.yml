@@ -1,0 +1,386 @@
+openapi: 3.1.0
+info:
+  title: Basescan Accounts Gas Tracker API
+  version: 1.0.0
+  description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
+  license:
+    name: UNLICENSED
+    url: https://docs.basescan.org/
+servers:
+- url: https://api.basescan.org/api
+  description: Base Mainnet Endpoint
+- url: https://api-sepolia.basescan.org/api
+  description: Base Sepolia Testnet Endpoint
+security:
+- apiKeyAuth: []
+tags:
+- name: Gas Tracker
+paths:
+  /?module=gastracker&action=gasestimate:
+    get:
+      operationId: get-estimation-of-confirmation-time
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/gas-tracker#get-estimation-of-confirmation-time
+      summary: Get Estimation of Confirmation Time
+      description: Returns the estimated time, in seconds, for a transaction to be confirmed on the blockchain.
+      tags:
+      - Gas Tracker
+      parameters:
+      - in: query
+        name: gasprice
+        schema:
+          $ref: '#/components/schemas/IntegerMin1'
+        required: true
+        example: '2000000000'
+      responses:
+        '200':
+          description: 'Operation result. 📝 Note: The result is returned in seconds.'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.gastracker.gasestimate'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result: '9227'
+  /?module=gastracker&action=gasoracle:
+    get:
+      operationId: get-gas-oracle
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/gas-tracker#get-gas-oracle
+      summary: Get Gas Oracle
+      description: Returns the current Safe, Proposed and Fast gas prices. Post EIP-1559 🔥 changes :Safe/Proposed/Fast gas price recommendations are now modeled as Priority Fees.New field suggestBaseFee , the baseFee of the next pending blockNew field gasUsedRatio, to estimate how busy the network isLearn more about the gas changes in EIP-1559.
+      tags:
+      - Gas Tracker
+      parameters: []
+      responses:
+        '200':
+          description: 'Operation result. ⛽ Note: The gas prices are returned in Gwei.'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.gastracker.gasoracle'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                  LastBlock: '13053741'
+                  SafeGasPrice: '20'
+                  ProposeGasPrice: '22'
+                  FastGasPrice: '24'
+                  suggestBaseFee: '19.230609716'
+                  gasUsedRatio: 0.370119078777807,0.8954731,0.550911766666667,0.212457033333333,0.552463633333333
+  /?module=stats&action=dailyavggaslimit:
+    get:
+      operationId: get-daily-average-gas-limit
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/gas-tracker#get-daily-average-gas-limit
+      summary: Get Daily Average Gas Limit
+      description: Returns the historical daily average gas limit of the Ethereum network. PRO endpoint.
+      tags:
+      - Gas Tracker
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyavggaslimit'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  gasLimit: '8001360'
+                - UTCDate: '2019-02-27'
+                  unixTimeStamp: '1551225600'
+                  gasLimit: '8001071'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  gasLimit: '8001137'
+  /?module=stats&action=dailygasused:
+    get:
+      operationId: get-ethereum-daily-total-gas-used
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/gas-tracker#get-ethereum-daily-total-gas-used
+      summary: Get Ethereum Daily Total Gas Used
+      description: Returns the total amount of gas used daily for transctions on the Ethereum network. PRO endpoint.
+      tags:
+      - Gas Tracker
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailygasused'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  gasUsed: '32761450415'
+                - UTCDate: '2019-02-27'
+                  unixTimeStamp: '1551225600'
+                  gasUsed: '32657440136'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  gasUsed: '33081119561'
+  /?module=stats&action=dailyavggasprice:
+    get:
+      operationId: get-daily-average-gas-price
+      externalDocs:
+        url: https://docs.etherscan.io/api-endpoints/gas-tracker#get-daily-average-gas-price
+      summary: Get Daily Average Gas Price
+      description: Returns the daily average gas price used on the Ethereum network. PRO endpoint.
+      tags:
+      - Gas Tracker
+      parameters:
+      - in: query
+        name: startdate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-01'
+      - in: query
+        name: enddate
+        schema:
+          $ref: '#/components/schemas/DateYYYYMMDD'
+        required: true
+        example: '2019-02-28'
+      - in: query
+        name: sort
+        schema:
+          $ref: '#/components/schemas/PageSort'
+        required: false
+        example: asc
+      responses:
+        '200':
+          description: Operation result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - allOf:
+                  - $ref: '#/components/schemas/ResponseOK'
+                  - $ref: '#/components/schemas/Result.stats.dailyavggasprice'
+                - $ref: '#/components/schemas/ResponseNOTOK'
+              example:
+                status: '1'
+                message: OK
+                result:
+                - UTCDate: '2019-02-01'
+                  unixTimeStamp: '1548979200'
+                  maxGasPrice_Wei: '60814303896257'
+                  minGasPrice_Wei: '432495'
+                  avgGasPrice_Wei: '13234562600'
+                - UTCDate: '2019-02-27'
+                  unixTimeStamp: '1551225600'
+                  maxGasPrice_Wei: '42000000000000'
+                  minGasPrice_Wei: '1000000'
+                  avgGasPrice_Wei: '16334617513'
+                - UTCDate: '2019-02-28'
+                  unixTimeStamp: '1551312000'
+                  maxGasPrice_Wei: '237222222222257'
+                  minGasPrice_Wei: '100000000'
+                  avgGasPrice_Wei: '18834674068'
+components:
+  schemas:
+    UnixTimestampString:
+      type: string
+      description: A Unix timestamp representing the number of seconds since January 1, 1970, expressed as a string.
+      pattern: ^[0-9]+$
+      example: '1623338323'
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
+    Result.gastracker.gasestimate:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    Result.stats.dailygasused:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              gasUsed:
+                $ref: '#/components/schemas/IntegerMin0String'
+    DateYYYYMMDD:
+      type: string
+      format: date
+      description: A date in the YYYY-MM-DD format
+      example: '2019-02-01'
+    FloatString:
+      type: string
+      pattern: ^\d+(\.\d+)?$
+      description: A float represented as a string.
+    FloatCsvString:
+      type: string
+      description: A comma-separated list of float values, represented as a string.
+      pattern: ^(\d+(\.\d+)?)(,\d+(\.\d+)?)*$
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    Result.gastracker.gasoracle:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            LastBlock:
+              $ref: '#/components/schemas/IntegerMin0String'
+            SafeGasPrice:
+              $ref: '#/components/schemas/IntegerMin0String'
+            ProposeGasPrice:
+              $ref: '#/components/schemas/IntegerMin0String'
+            FastGasPrice:
+              $ref: '#/components/schemas/IntegerMin0String'
+            suggestBaseFee:
+              $ref: '#/components/schemas/FloatString'
+            gasUsedRatio:
+              $ref: '#/components/schemas/FloatCsvString'
+    PageSort:
+      type: string
+      enum:
+      - asc
+      - desc
+    IntegerMin1:
+      type: integer
+      minimum: 1
+    Result.stats.dailyavggaslimit:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              gasLimit:
+                $ref: '#/components/schemas/IntegerMin0String'
+    ResponseNOTOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '0'
+        message:
+          type: string
+          pattern: ^NOTOK(-.*)?$
+          examples:
+          - NOTOK
+          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
+        result:
+          type: string
+      required:
+      - status
+      - message
+      - result
+    Result.stats.dailyavggasprice:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              maxGasPrice_Wei:
+                $ref: '#/components/schemas/IntegerMin0String'
+              minGasPrice_Wei:
+                $ref: '#/components/schemas/IntegerMin0String'
+              avgGasPrice_Wei:
+                $ref: '#/components/schemas/IntegerMin0String'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  url: https://docs.basescan.org/

@@ -1,0 +1,32 @@
+{
+  "provider": "basescan",
+  "sources": [
+    "basescan-accounts-api-openapi.yml",
+    "basescan-api-pro-endpoints-api-openapi.yml",
+    "basescan-blocks-api-openapi.yml",
+    "basescan-contracts-api-openapi.yml",
+    "basescan-gas-tracker-api-openapi.yml",
+    "basescan-geth-parity-proxy-api-openapi.yml",
+    "basescan-logs-api-openapi.yml",
+    "basescan-stats-api-openapi.yml",
+    "basescan-tokens-api-openapi.yml",
+    "basescan-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "basescan-accounts-api-openapi.yml",
+    "basescan-api-pro-endpoints-api-openapi.yml",
+    "basescan-blocks-api-openapi.yml",
+    "basescan-contracts-api-openapi.yml",
+    "basescan-gas-tracker-api-openapi.yml",
+    "basescan-geth-parity-proxy-api-openapi.yml",
+    "basescan-logs-api-openapi.yml",
+    "basescan-stats-api-openapi.yml",
+    "basescan-tokens-api-openapi.yml",
+    "basescan-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

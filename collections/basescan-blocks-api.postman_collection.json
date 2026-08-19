@@ -1,0 +1,906 @@
+{
+  "item": [
+    {
+      "id": "24110566-3eee-41ed-8af7-2e607e460ec9",
+      "name": "Blocks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80968ffc-c04c-427d-84d3-fcbca06b9370",
+          "name": "Get Block And Uncle Rewards by BlockNo",
+          "request": {
+            "name": "Get Block And Uncle Rewards by BlockNo",
+            "description": {
+              "content": "Returns the block reward and 'Uncle' block rewards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "block"
+                },
+                {
+                  "key": "action",
+                  "value": "getblockreward"
+                },
+                {
+                  "disabled": false,
+                  "key": "blockno",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d18ed22-5730-48bf-8573-9f633018b009",
+              "name": "Operation result. ​​ ⏳ Tip : The timestamp field is denoted in Unix timestamp.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blockno",
+                      "value": "4347"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": {\n    \"blockNumber\": \"2165403\",\n    \"timeStamp\": \"1472533979\",\n    \"blockMiner\": \"0x13a06d3dfe21e0db5c016c03ea7d2509f7f8d1e3\",\n    \"blockReward\": \"5314181600000000000\",\n    \"uncles\": [\n      {\n        \"miner\": \"0xbcdfc35b86bedf72f0cda046a3c16829a2ef41d1\",\n        \"unclePosition\": \"0\",\n        \"blockreward\": \"3750000000000000000\"\n      },\n      {\n        \"miner\": \"0x0d0c9855c722ff0c78f21e43aa275a5b8ea60dce\",\n        \"unclePosition\": \"1\",\n        \"blockreward\": \"3750000000000000000\"\n      }\n    ],\n    \"uncleInclusionReward\": \"312500000000000000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d18a4a8-b354-43fb-a718-cc60b669b4d0",
+          "name": "Get Estimated Block Countdown Time by BlockNo",
+          "request": {
+            "name": "Get Estimated Block Countdown Time by BlockNo",
+            "description": {
+              "content": "Returns the estimated time remaining, in seconds, until a certain block is mined.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "block"
+                },
+                {
+                  "key": "action",
+                  "value": "getblockcountdown"
+                },
+                {
+                  "disabled": false,
+                  "key": "blockno",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b27e488-9112-413f-963c-88b3e9f5f4cf",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blockno",
+                      "value": "8476"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": {\n    \"CurrentBlock\": \"12715477\",\n    \"CountdownBlock\": \"16701588\",\n    \"RemainingBlock\": \"3986111\",\n    \"EstimateTimeInSec\": \"52616680.2\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab62519e-c21f-43d8-b75e-f2cf49ac35db",
+          "name": "Get Block Number by Timestamp",
+          "request": {
+            "name": "Get Block Number by Timestamp",
+            "description": {
+              "content": "Returns the block number that was mined at a certain timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "block"
+                },
+                {
+                  "key": "action",
+                  "value": "getblocknobytime"
+                },
+                {
+                  "disabled": false,
+                  "key": "timestamp",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "closest",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23d9f098-1c77-4ae6-8cb0-a493ce0ed846",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timestamp",
+                      "value": "8637"
+                    },
+                    {
+                      "key": "closest",
+                      "value": "before"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": \"12712551\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "083f116b-2cf1-4913-8add-f303e8a73314",
+          "name": "Get Daily Average Block Size",
+          "request": {
+            "name": "Get Daily Average Block Size",
+            "description": {
+              "content": "Returns the daily average block size within a date range. PRO endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "stats"
+                },
+                {
+                  "key": "action",
+                  "value": "dailyavgblocksize"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66c412de-a5a1-4c9c-b1f3-16c8eca47025",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startdate",
+                      "value": "2019-02-01"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "2019-02-28"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"UTCDate\": \"2019-02-01\",\n      \"unixTimeStamp\": \"1548979200\",\n      \"blockSize_bytes\": 20373\n    },\n    {\n      \"UTCDate\": \"2019-02-28\",\n      \"unixTimeStamp\": \"1551312000\",\n      \"blockSize_bytes\": 25117\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16087cff-d92f-456e-adeb-6ede0e73ea6f",
+          "name": "Get Daily Block Count and Rewards",
+          "request": {
+            "name": "Get Daily Block Count and Rewards",
+            "description": {
+              "content": "Returns the number of blocks mined daily and the amount of block rewards. PRO endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "stats"
+                },
+                {
+                  "key": "action",
+                  "value": "dailyblkcount"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a132f20-78da-44b1-abc5-227698ef0e40",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startdate",
+                      "value": "2019-02-01"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "2019-02-28"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"UTCDate\": \"2019-02-01\",\n      \"unixTimeStamp\": \"1548979200\",\n      \"blockCount\": 4848,\n      \"blockRewards_Eth\": \"14929.464690870590355682\"\n    },\n    {\n      \"UTCDate\": \"2019-02-28\",\n      \"unixTimeStamp\": \"1551312000\",\n      \"blockCount\": 4366,\n      \"blockRewards_Eth\": \"12808.485512162356907132\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d1883b0-f068-4e3b-a7a2-7f1ea5c3f2cd",
+          "name": "Get Daily Block Rewards",
+          "request": {
+            "name": "Get Daily Block Rewards",
+            "description": {
+              "content": "Returns the amount of block rewards distributed to miners daily. PRO endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "stats"
+                },
+                {
+                  "key": "action",
+                  "value": "dailyblockrewards"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1858b155-2185-4038-80fc-4c7ef1da54f3",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startdate",
+                      "value": "2019-02-01"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "2019-02-28"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"UTCDate\": \"2019-02-01\",\n      \"unixTimeStamp\": \"1548979200\",\n      \"blockRewards_Eth\": \"15300.65625\"\n    },\n    {\n      \"UTCDate\": \"2019-02-28\",\n      \"unixTimeStamp\": \"1551312000\",\n      \"blockRewards_Eth\": \"12954.84375\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd7ca8e7-0120-4973-9596-556eff7f1f83",
+          "name": "Get Daily Average Time for A Block to be Included in the Ethereum Blockchain",
+          "request": {
+            "name": "Get Daily Average Time for A Block to be Included in the Ethereum Blockchain",
+            "description": {
+              "content": "Returns the daily average of time needed for a block to be successfully mined. PRO endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "stats"
+                },
+                {
+                  "key": "action",
+                  "value": "dailyavgblocktime"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3befa8b8-c943-4165-be67-c55766f4d501",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startdate",
+                      "value": "2019-02-01"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "2019-02-28"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"UTCDate\": \"2019-02-01\",\n      \"unixTimeStamp\": \"1548979200\",\n      \"blockTime_sec\": \"17.67\"\n    },\n    {\n      \"UTCDate\": \"2019-02-28\",\n      \"unixTimeStamp\": \"1551312000\",\n      \"blockTime_sec\": \"19.61\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7293a3ec-fd10-4ebb-b514-ad1712ad7216",
+          "name": "Get Daily Uncle Block Count and Rewards",
+          "request": {
+            "name": "Get Daily Uncle Block Count and Rewards",
+            "description": {
+              "content": "Returns the number of 'Uncle' blocks mined daily and the amount of 'Uncle' block rewards. PRO endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "stats"
+                },
+                {
+                  "key": "action",
+                  "value": "dailyuncleblkcount"
+                },
+                {
+                  "disabled": false,
+                  "key": "startdate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "enddate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83872aa5-80df-49d2-a49b-36ebc7243d80",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startdate",
+                      "value": "2019-02-01"
+                    },
+                    {
+                      "key": "enddate",
+                      "value": "2019-02-28"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"UTCDate\": \"2019-02-01\",\n      \"unixTimeStamp\": \"1548979200\",\n      \"uncleBlockCount\": 287,\n      \"uncleBlockRewards_Eth\": \"729.75\"\n    },\n    {\n      \"UTCDate\": \"2019-02-28\",\n      \"unixTimeStamp\": \"1551312000\",\n      \"uncleBlockCount\": 288,\n      \"uncleBlockRewards_Eth\": \"691.5\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.basescan.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "84090079-fb59-4cc1-82d8-f83d887a9565",
+    "name": "Basescan Accounts Blocks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.",
+      "type": "text/plain"
+    }
+  }
+}

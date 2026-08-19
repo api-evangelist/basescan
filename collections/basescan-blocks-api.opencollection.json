@@ -1,0 +1,225 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Basescan Accounts Blocks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blocks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Block And Uncle Rewards by BlockNo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=block&action=getblockreward",
+            "params": [
+              {
+                "name": "blockno",
+                "value": "2165403",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the block reward and 'Uncle' block rewards."
+        },
+        {
+          "info": {
+            "name": "Get Estimated Block Countdown Time by BlockNo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=block&action=getblockcountdown",
+            "params": [
+              {
+                "name": "blockno",
+                "value": "16701588",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the estimated time remaining, in seconds, until a certain block is mined."
+        },
+        {
+          "info": {
+            "name": "Get Block Number by Timestamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=block&action=getblocknobytime",
+            "params": [
+              {
+                "name": "timestamp",
+                "value": "1578638524",
+                "type": "query"
+              },
+              {
+                "name": "closest",
+                "value": "before",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the block number that was mined at a certain timestamp."
+        },
+        {
+          "info": {
+            "name": "Get Daily Average Block Size",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyavgblocksize",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the daily average block size within a date range. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Block Count and Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyblkcount",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of blocks mined daily and the amount of block rewards. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Block Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyblockrewards",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the amount of block rewards distributed to miners daily. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Average Time for A Block to be Included in the Ethereum Blockchain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyavgblocktime",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the daily average of time needed for a block to be successfully mined. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Uncle Block Count and Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyuncleblkcount",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of 'Uncle' blocks mined daily and the amount of 'Uncle' block rewards. PRO endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

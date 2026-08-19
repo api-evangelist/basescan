@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Basescan Accounts Gas Tracker API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gas Tracker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Estimation of Confirmation Time",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=gastracker&action=gasestimate",
+            "params": [
+              {
+                "name": "gasprice",
+                "value": "2000000000",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the estimated time, in seconds, for a transaction to be confirmed on the blockchain."
+        },
+        {
+          "info": {
+            "name": "Get Gas Oracle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=gastracker&action=gasoracle"
+          },
+          "docs": "Returns the current Safe, Proposed and Fast gas prices. Post EIP-1559 🔥 changes :Safe/Proposed/Fast gas price recommendations are now modeled as Priority Fees.New field suggestBaseFee , the baseFee of the next pending blockNew field gasUsedRatio, to estimate how busy the network isLearn more about the gas changes in EIP-1559."
+        },
+        {
+          "info": {
+            "name": "Get Daily Average Gas Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyavggaslimit",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the historical daily average gas limit of the Ethereum network. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Ethereum Daily Total Gas Used",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailygasused",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the total amount of gas used daily for transctions on the Ethereum network. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Average Gas Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyavggasprice",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the daily average gas price used on the Ethereum network. PRO endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "basescan",
+    "captured_at": "2026-08-17T122729",
+    "source_url": "https://etherscan.io",
+    "source_type": "fallback-domain",
+    "file": "basescan-2026-08-17T122729.png",
+    "bytes": 235590,
+    "capture": "playwright-local"
+  }
+]

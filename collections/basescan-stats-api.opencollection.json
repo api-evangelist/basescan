@@ -1,0 +1,315 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Basescan Accounts Stats API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Total Supply of Ether",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=ethsupply"
+          },
+          "docs": "Returns the current amount of Ether in circulation excluding ETH2 Staking rewards and EIP1559 burnt fees."
+        },
+        {
+          "info": {
+            "name": "Get Total Supply of Ether 2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=ethsupply2"
+          },
+          "docs": "Returns the current amount of Ether in circulation, ETH2 Staking rewards, EIP1559 burnt fees, and total withdrawn ETH from the beacon chain."
+        },
+        {
+          "info": {
+            "name": "Get Ether Last Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=ethprice"
+          },
+          "docs": "Returns the latest price of 1 ETH."
+        },
+        {
+          "info": {
+            "name": "Get Ethereum Nodes Size",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=chainsize",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "clienttype",
+                "value": "geth",
+                "type": "query"
+              },
+              {
+                "name": "syncmode",
+                "value": "default",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the size of the Ethereum blockchain, in bytes, over a date range."
+        },
+        {
+          "info": {
+            "name": "Get Total Nodes Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=nodecount"
+          },
+          "docs": "Returns the total number of discoverable Ethereum nodes."
+        },
+        {
+          "info": {
+            "name": "Get Daily Network Transaction Fee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailytxnfee"
+          },
+          "docs": "Returns the amount of transaction fees paid to miners per day. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily New Address Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailynewaddress",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of new Ethereum addresses created per day. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Network Utilization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailynetutilization",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the daily average gas used over gas limit, in percentage. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Average Network Hash Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyavghashrate",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the historical measure of processing power of the Ethereum network. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Transaction Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailytx",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of transactions performed on the Ethereum blockchain per day. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Daily Average Network Difficulty",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=dailyavgnetdifficulty",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the historical mining difficulty of the Ethereum network. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Ether Historical Daily Market Cap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=ethdailymarketcap",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the historical Ether daily market capitalization. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Ether Historical Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=ethdailyprice",
+            "params": [
+              {
+                "name": "startdate",
+                "value": "2019-02-01",
+                "type": "query"
+              },
+              {
+                "name": "enddate",
+                "value": "2019-02-28",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the historical price of 1 ETH. PRO endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

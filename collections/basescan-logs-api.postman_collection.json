@@ -1,0 +1,481 @@
+{
+  "item": [
+    {
+      "id": "57a1727b-9f4c-4778-a1dc-0170cc73675e",
+      "name": "Logs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0688c161-310d-4f19-9659-8271ff97eb6f",
+          "name": "Get Event Logs by Address",
+          "request": {
+            "name": "Get Event Logs by Address",
+            "description": {
+              "content": "Returns the event logs from an address, with optional filtering by block range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "logs"
+                },
+                {
+                  "key": "action",
+                  "value": "getLogs"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "fromBlock",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "toBlock",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "943e4e94-c755-41c2-bcb4-911b5184212e",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "0xbd3531da5cf5857e7cfaa92426877b022e612cf8"
+                    },
+                    {
+                      "key": "fromBlock",
+                      "value": "1937"
+                    },
+                    {
+                      "key": "toBlock",
+                      "value": "1937"
+                    },
+                    {
+                      "key": "page",
+                      "value": "8968"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"address\": \"0xbd3531da5cf5857e7cfaa92426877b022e612cf8\",\n      \"topics\": [\n        \"0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef\",\n        \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n        \"0x000000000000000000000000c45a4b3b698f21f88687548e7f5a80df8b99d93d\",\n        \"0x00000000000000000000000000000000000000000000000000000000000000b5\"\n      ],\n      \"data\": \"0x\",\n      \"blockNumber\": \"0xc48174\",\n      \"timeStamp\": \"0x60f9ce56\",\n      \"gasPrice\": \"0x2e90edd000\",\n      \"gasUsed\": \"0x247205\",\n      \"logIndex\": \"0x\",\n      \"transactionHash\": \"0x4ffd22d986913d33927a392fe4319bcd2b62f3afe1c15a2c59f77fc2cc4c20a9\",\n      \"transactionIndex\": \"0x\"\n    },\n    {\n      \"address\": \"0xbd3531da5cf5857e7cfaa92426877b022e612cf8\",\n      \"topics\": [\n        \"0x645f26e653c951cec836533f8fe0616d301c20a17153debc17d7c3dbe4f32b28\",\n        \"0x00000000000000000000000000000000000000000000000000000000000000b5\"\n      ],\n      \"data\": \"0x\",\n      \"blockNumber\": \"0xc48174\",\n      \"timeStamp\": \"0x60f9ce56\",\n      \"gasPrice\": \"0x2e90edd000\",\n      \"gasUsed\": \"0x247205\",\n      \"logIndex\": \"0x1\",\n      \"transactionHash\": \"0x4ffd22d986913d33927a392fe4319bcd2b62f3afe1c15a2c59f77fc2cc4c20a9\",\n      \"transactionIndex\": \"0x\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3f963d6-8f5c-43d5-9519-f004d77cf65b",
+          "name": "Get Event Logs by Topics",
+          "request": {
+            "name": "Get Event Logs by Topics",
+            "description": {
+              "content": "Returns the events log in a block range, filtered by topics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "logs"
+                },
+                {
+                  "key": "action",
+                  "value": "getLogs"
+                },
+                {
+                  "key": "get-event-logs-by-topics",
+                  "value": "null"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromBlock",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "toBlock",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "topic",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "topicOperator",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b67c552d-ee97-481a-9f81-201eb4f76fd8",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromBlock",
+                      "value": "1937"
+                    },
+                    {
+                      "key": "toBlock",
+                      "value": "9344"
+                    },
+                    {
+                      "key": "topic",
+                      "value": "topic0"
+                    },
+                    {
+                      "key": "topicOperator",
+                      "value": "and"
+                    },
+                    {
+                      "key": "page",
+                      "value": "8968"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"address\": \"0xbd3531da5cf5857e7cfaa92426877b022e612cf8\",\n      \"topics\": [\n        \"0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef\",\n        \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n        \"0x000000000000000000000000c45a4b3b698f21f88687548e7f5a80df8b99d93d\",\n        \"0x00000000000000000000000000000000000000000000000000000000000000b5\"\n      ],\n      \"data\": \"0x\",\n      \"blockNumber\": \"0xc48174\",\n      \"timeStamp\": \"0x60f9ce56\",\n      \"gasPrice\": \"0x2e90edd000\",\n      \"gasUsed\": \"0x247205\",\n      \"logIndex\": \"0x\",\n      \"transactionHash\": \"0x4ffd22d986913d33927a392fe4319bcd2b62f3afe1c15a2c59f77fc2cc4c20a9\",\n      \"transactionIndex\": \"0x\"\n    },\n    {\n      \"address\": \"0xbd3531da5cf5857e7cfaa92426877b022e612cf8\",\n      \"topics\": [\n        \"0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef\",\n        \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n        \"0x000000000000000000000000c45a4b3b698f21f88687548e7f5a80df8b99d93d\",\n        \"0x00000000000000000000000000000000000000000000000000000000000000b6\"\n      ],\n      \"data\": \"0x\",\n      \"blockNumber\": \"0xc48174\",\n      \"timeStamp\": \"0x60f9ce56\",\n      \"gasPrice\": \"0x2e90edd000\",\n      \"gasUsed\": \"0x247205\",\n      \"logIndex\": \"0x2\",\n      \"transactionHash\": \"0x4ffd22d986913d33927a392fe4319bcd2b62f3afe1c15a2c59f77fc2cc4c20a9\",\n      \"transactionIndex\": \"0x\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eff97eab-52f4-40c4-b1ef-d1b789d02e92",
+          "name": "Get Event Logs by Address filtered by Topics",
+          "request": {
+            "name": "Get Event Logs by Address filtered by Topics",
+            "description": {
+              "content": "Returns the event logs from an address, filtered by topics and block range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "logs"
+                },
+                {
+                  "key": "action",
+                  "value": "getLogs"
+                },
+                {
+                  "key": "get-event-logs-by-address-filtered-by-topics",
+                  "value": "null"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromBlock",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "toBlock",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "topic",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "topicOperator",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c96a6c4-ac4c-4fb9-a122-2a35113ebf82",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fromBlock",
+                      "value": "7414"
+                    },
+                    {
+                      "key": "toBlock",
+                      "value": "955"
+                    },
+                    {
+                      "key": "address",
+                      "value": "0x59728544b08ab483533076417fbbb2fd0b17ce3a"
+                    },
+                    {
+                      "key": "topic",
+                      "value": "topic0"
+                    },
+                    {
+                      "key": "topicOperator",
+                      "value": "and"
+                    },
+                    {
+                      "key": "page",
+                      "value": "8968"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "20"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"address\": \"0x59728544b08ab483533076417fbbb2fd0b17ce3a\",\n      \"topics\": [\n        \"0x27c4f0403323142b599832f26acd21c74a9e5b809f2215726e244a4ac588cd7d\",\n        \"0x00000000000000000000000023581767a106ae21c074b2276d25e5c3e136a68b\",\n        \"0x000000000000000000000000000000000000000000000000000000000000236d\",\n        \"0x000000000000000000000000c8a5592031f93debea5d9e67a396944ee01bb2ca\"\n      ],\n      \"data\": \"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000000000000f207539952d0000\",\n      \"blockNumber\": \"0xe60262\",\n      \"timeStamp\": \"0x62c26caf\",\n      \"gasPrice\": \"0x5e2d742c9\",\n      \"gasUsed\": \"0xfb7f8\",\n      \"logIndex\": \"0x4b\",\n      \"transactionHash\": \"0x26fe1a0a403fd44ef11ee72f3b4ceff590b6ea533684cb279cb4242be463304c\",\n      \"transactionIndex\": \"0x39\"\n    },\n    {\n      \"address\": \"0x59728544b08ab483533076417fbbb2fd0b17ce3a\",\n      \"topics\": [\n        \"0x27c4f0403323142b599832f26acd21c74a9e5b809f2215726e244a4ac588cd7d\",\n        \"0x00000000000000000000000023581767a106ae21c074b2276d25e5c3e136a68b\",\n        \"0x0000000000000000000000000000000000000000000000000000000000002261\",\n        \"0x000000000000000000000000c8a5592031f93debea5d9e67a396944ee01bb2ca\"\n      ],\n      \"data\": \"0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000000000000de0b6b3a7640000\",\n      \"blockNumber\": \"0xe6035b\",\n      \"timeStamp\": \"0x62c27ab1\",\n      \"gasPrice\": \"0x27e523173\",\n      \"gasUsed\": \"0x3b86e\",\n      \"logIndex\": \"0x1d7\",\n      \"transactionHash\": \"0x3a299413cf2c91e376e542efcf3fc308c562da79af6e992401217cc6208c7f74\",\n      \"transactionIndex\": \"0x92\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.basescan.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0594d62b-57e0-4755-bb2d-a8af411204ad",
+    "name": "Basescan Accounts Logs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.",
+      "type": "text/plain"
+    }
+  }
+}

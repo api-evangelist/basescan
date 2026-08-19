@@ -1,0 +1,329 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Basescan Accounts Geth/Parity Proxy API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geth/Parity Proxy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "eth_blockNumber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_blockNumber"
+          },
+          "docs": "Returns the number of most recent block"
+        },
+        {
+          "info": {
+            "name": "eth_getBlockByNumber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getBlockByNumber",
+            "params": [
+              {
+                "name": "tag",
+                "value": "0x10d4f",
+                "type": "query"
+              },
+              {
+                "name": "boolean",
+                "value": "true",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about a block by block number."
+        },
+        {
+          "info": {
+            "name": "eth_getUncleByBlockNumberAndIndex",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getUncleByBlockNumberAndIndex",
+            "params": [
+              {
+                "name": "tag",
+                "value": "0xC63276",
+                "type": "query"
+              },
+              {
+                "name": "index",
+                "value": "0x0",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about a uncle by block number."
+        },
+        {
+          "info": {
+            "name": "eth_getBlockTransactionCountByNumber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getBlockTransactionCountByNumber",
+            "params": [
+              {
+                "name": "tag",
+                "value": "0x10FB78",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of transactions in a block."
+        },
+        {
+          "info": {
+            "name": "eth_getTransactionByHash",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getTransactionByHash",
+            "params": [
+              {
+                "name": "txhash",
+                "value": "0xbc78ab8a9e9a0bca7d0321a27b2c03addeae08ba81ea98b03cd3dd237eabed44",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the information about a transaction requested by transaction hash."
+        },
+        {
+          "info": {
+            "name": "eth_getTransactionByBlockNumberAndIndex",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getTransactionByBlockNumberAndIndex",
+            "params": [
+              {
+                "name": "tag",
+                "value": "0xC6331D",
+                "type": "query"
+              },
+              {
+                "name": "index",
+                "value": "0x11A",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns information about a transaction by block number and transaction index position."
+        },
+        {
+          "info": {
+            "name": "eth_getTransactionCount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getTransactionCount",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x4bd5900Cb274ef15b153066D736bf3e83A9ba44e",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "latest",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the number of transactions performed by an address."
+        },
+        {
+          "info": {
+            "name": "eth_sendRawTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_sendRawTransaction",
+            "params": [
+              {
+                "name": "hex",
+                "value": "0xf904808000831cfde080",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Submits a pre-signed transaction for broadcast to the Ethereum network."
+        },
+        {
+          "info": {
+            "name": "eth_getTransactionReceipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getTransactionReceipt",
+            "params": [
+              {
+                "name": "txhash",
+                "value": "0xadb8aec59e80db99811ac4a0235efa3e45da32928bcff557998552250fa672eb",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the receipt of a transaction by transaction hash."
+        },
+        {
+          "info": {
+            "name": "eth_call",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_call",
+            "params": [
+              {
+                "name": "to",
+                "value": "0xAEEF46DB4855E25702F8237E8f403FddcaF931C0",
+                "type": "query"
+              },
+              {
+                "name": "data",
+                "value": "0x70a08231000000000000000000000000e16359506c028e51f16be38986ec5746251e9724",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "latest",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Executes a new message call immediately without creating a transaction on the block chain."
+        },
+        {
+          "info": {
+            "name": "eth_getCode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getCode",
+            "params": [
+              {
+                "name": "address",
+                "value": "0xf75e354c5edc8efed9b59ee9f67a80845ade7d0c",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "latest",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns code at a given address."
+        },
+        {
+          "info": {
+            "name": "eth_getStorageAt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_getStorageAt",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x6e03d9cce9d60f3e9f2597e13cd4c54c55330cfd",
+                "type": "query"
+              },
+              {
+                "name": "position",
+                "value": "0x0",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "latest",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the value from a storage position at a given address. This endpoint is still experimental and may have potential issues"
+        },
+        {
+          "info": {
+            "name": "eth_gasPrice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_gasPrice"
+          },
+          "docs": "Returns the current price per gas in wei."
+        },
+        {
+          "info": {
+            "name": "eth_estimateGas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=proxy&action=eth_estimateGas",
+            "params": [
+              {
+                "name": "data",
+                "value": "0x4e71d92d",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "0xf0160428a8552ac9bb7e050d90eeade4ddd52843",
+                "type": "query"
+              },
+              {
+                "name": "value",
+                "value": "0xff22",
+                "type": "query"
+              },
+              {
+                "name": "gas",
+                "value": "0x5f5e0ff",
+                "type": "query"
+              },
+              {
+                "name": "gasPrice",
+                "value": "0x51da038cc",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Makes a call or transaction, which won't be added to the blockchain and returns the used gas."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

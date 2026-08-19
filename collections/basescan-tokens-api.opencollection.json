@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Basescan Accounts Tokens API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ERC20-Token TotalSupply by ContractAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=tokensupply",
+            "params": [
+              {
+                "name": "contractaddress",
+                "value": "0x57d90b64a1a57749b0f932f1a3395792e12e7055",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the current amount of an ERC-20 token in circulation."
+        },
+        {
+          "info": {
+            "name": "Get ERC20-Token Account Balance for TokenContractAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=account&action=tokenbalance",
+            "params": [
+              {
+                "name": "contractaddress",
+                "value": "0x57d90b64a1a57749b0f932f1a3395792e12e7055",
+                "type": "query"
+              },
+              {
+                "name": "address",
+                "value": "0xe04f27eb70e025b78871a2ad7eabe85e61212761",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the current balance of an ERC-20 token of an address."
+        },
+        {
+          "info": {
+            "name": "Get Historical ERC20-Token TotalSupply by ContractAddress & BlockNo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=stats&action=tokensupplyhistory",
+            "params": [
+              {
+                "name": "contractaddress",
+                "value": "0x57d90b64a1a57749b0f932f1a3395792e12e7055",
+                "type": "query"
+              },
+              {
+                "name": "blockno",
+                "value": "8000000",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the amount of an ERC-20 token in circulation at a certain block height. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Historical ERC20-Token Account Balance for TokenContractAddress by BlockNo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=account&action=tokenbalancehistory",
+            "params": [
+              {
+                "name": "contractaddress",
+                "value": "0x57d90b64a1a57749b0f932f1a3395792e12e7055",
+                "type": "query"
+              },
+              {
+                "name": "address",
+                "value": "0xe04f27eb70e025b78871a2ad7eabe85e61212761",
+                "type": "query"
+              },
+              {
+                "name": "blockno",
+                "value": "8000000",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the balance of an ERC-20 token of an address at a certain block height. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Token Holder List by Contract Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=token&action=tokenholderlist",
+            "params": [
+              {
+                "name": "contractaddress",
+                "value": "0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "10",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return the current ERC20 token holders and number of tokens held."
+        },
+        {
+          "info": {
+            "name": "Get Token Info by ContractAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=token&action=tokeninfo",
+            "params": [
+              {
+                "name": "contractaddress",
+                "value": "0x0e3a2a1f2146d86a604adc220b4967a898d7fe07",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns project information and social media links of an ERC20/ERC721/ERC1155 token. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Address ERC20 Token Holding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=account&action=addresstokenbalance",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x983e3660c0bE01991785F80f266A84B911ab59b0",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "100",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the ERC-20 tokens and amount held by an address. Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier."
+        },
+        {
+          "info": {
+            "name": "Get Address ERC721 Token Holding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=account&action=addresstokennftbalance",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x6b52e83941eb10f9c613c395a834457559a80114",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "100",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the ERC-721 tokens and amount held by an address. Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier."
+        },
+        {
+          "info": {
+            "name": "Get Address ERC721 Token Inventory By Contract Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=account&action=addresstokennftinventory",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x123432244443b54409430979df8333f9308a6040",
+                "type": "query"
+              },
+              {
+                "name": "contractaddress",
+                "value": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "100",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the ERC-721 token inventory of an address, filtered by contract address. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

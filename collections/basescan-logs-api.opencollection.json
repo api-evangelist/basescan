@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Basescan Accounts Logs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Event Logs by Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=logs&action=getLogs",
+            "params": [
+              {
+                "name": "address",
+                "value": "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
+                "type": "query"
+              },
+              {
+                "name": "fromBlock",
+                "value": "12878196",
+                "type": "query"
+              },
+              {
+                "name": "toBlock",
+                "value": "12878196",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "1000",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the event logs from an address, with optional filtering by block range."
+        },
+        {
+          "info": {
+            "name": "Get Event Logs by Topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=logs&action=getLogs&get-event-logs-by-topics",
+            "params": [
+              {
+                "name": "fromBlock",
+                "value": "12878196",
+                "type": "query"
+              },
+              {
+                "name": "toBlock",
+                "value": "12879196",
+                "type": "query"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "topicOperator",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "1000",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the events log in a block range, filtered by topics."
+        },
+        {
+          "info": {
+            "name": "Get Event Logs by Address filtered by Topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.basescan.org/api/?module=logs&action=getLogs&get-event-logs-by-address-filtered-by-topics",
+            "params": [
+              {
+                "name": "fromBlock",
+                "value": "15073139",
+                "type": "query"
+              },
+              {
+                "name": "toBlock",
+                "value": "15074139",
+                "type": "query"
+              },
+              {
+                "name": "address",
+                "value": "0x59728544b08ab483533076417fbbb2fd0b17ce3a",
+                "type": "query"
+              },
+              {
+                "name": "topic",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "topicOperator",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "1000",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the event logs from an address, filtered by topics and block range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

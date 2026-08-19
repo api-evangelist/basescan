@@ -1,0 +1,1017 @@
+{
+  "item": [
+    {
+      "id": "5da8ccf3-5830-4109-80fe-dcad6090f79f",
+      "name": "Tokens",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "872c6104-43db-40b4-886c-7323a1e28dc5",
+          "name": "Get ERC20-Token TotalSupply by ContractAddress",
+          "request": {
+            "name": "Get ERC20-Token TotalSupply by ContractAddress",
+            "description": {
+              "content": "Returns the current amount of an ERC-20 token in circulation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "stats"
+                },
+                {
+                  "key": "action",
+                  "value": "tokensupply"
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da362b5e-aee1-41cc-b003-dce4c429e090",
+              "name": "Operation result. 📈 Tip : The result is returned in the token's smallest decimal representation.Eg. a token with a balance of 215.241526476136819398 and 18 decimal places will be returned as 215241526476136819398",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contractaddress",
+                      "value": "0x57d90b64a1a57749b0f932f1a3395792e12e7055"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": \"21265524714464\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80ac0b94-d196-4da0-b8da-05baed35589d",
+          "name": "Get ERC20-Token Account Balance for TokenContractAddress",
+          "request": {
+            "name": "Get ERC20-Token Account Balance for TokenContractAddress",
+            "description": {
+              "content": "Returns the current balance of an ERC-20 token of an address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "account"
+                },
+                {
+                  "key": "action",
+                  "value": "tokenbalance"
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0aba158-8325-46fd-8ea1-b769becd922d",
+              "name": "Operation result. 📈 Tip : The result is returned in the token's smallest decimal representation.Eg. a token with a balance of 215.241526476136819398 and 18 decimal places will be returned as 215241526476136819398",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contractaddress",
+                      "value": "0x57d90b64a1a57749b0f932f1a3395792e12e7055"
+                    },
+                    {
+                      "key": "address",
+                      "value": "0xe04f27eb70e025b78871a2ad7eabe85e61212761"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": \"135499\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2b57e3e-347d-4860-954d-1b9cfb3ca38d",
+          "name": "Get Historical ERC20-Token TotalSupply by ContractAddress & BlockNo",
+          "request": {
+            "name": "Get Historical ERC20-Token TotalSupply by ContractAddress & BlockNo",
+            "description": {
+              "content": "Returns the amount of an ERC-20 token in circulation at a certain block height. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "stats"
+                },
+                {
+                  "key": "action",
+                  "value": "tokensupplyhistory"
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "blockno",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6236379b-79c1-45a6-8cc1-aedebec235e2",
+              "name": "Operation result. 📈 Tip : The result is returned in the token's smallest decimal representation.Eg. a token with a balance of 215.241526476136819398 and 18 decimal places will be returned as 215241526476136819398",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contractaddress",
+                      "value": "0x57d90b64a1a57749b0f932f1a3395792e12e7055"
+                    },
+                    {
+                      "key": "blockno",
+                      "value": "3831"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": \"21265524714464\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9511cc27-48e1-4894-9357-5414b3d17fe2",
+          "name": "Get Historical ERC20-Token Account Balance for TokenContractAddress by BlockNo",
+          "request": {
+            "name": "Get Historical ERC20-Token Account Balance for TokenContractAddress by BlockNo",
+            "description": {
+              "content": "Returns the balance of an ERC-20 token of an address at a certain block height. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "account"
+                },
+                {
+                  "key": "action",
+                  "value": "tokenbalancehistory"
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "blockno",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43f2074e-65aa-48d2-9ccb-cde1b3d48176",
+              "name": "Operation result. 📈 Tip : The result is returned in the token's smallest decimal representation.Eg. a token with a balance of 215.241526476136819398 and 18 decimal places will be returned as 215241526476136819398",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contractaddress",
+                      "value": "0x57d90b64a1a57749b0f932f1a3395792e12e7055"
+                    },
+                    {
+                      "key": "address",
+                      "value": "0xe04f27eb70e025b78871a2ad7eabe85e61212761"
+                    },
+                    {
+                      "key": "blockno",
+                      "value": "3831"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": \"135499\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b85630fa-b86f-44d1-bf41-c879987991c8",
+          "name": "Get Token Holder List by Contract Address",
+          "request": {
+            "name": "Get Token Holder List by Contract Address",
+            "description": {
+              "content": "Return the current ERC20 token holders and number of tokens held.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "token"
+                },
+                {
+                  "key": "action",
+                  "value": "tokenholderlist"
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62bfd28d-ee17-4fd5-90ae-b1bfe4b62493",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contractaddress",
+                      "value": "0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2094"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "3229"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"TokenHolderAddress\": \"0x0000000000000000000000000000000000000000\",\n      \"TokenHolderQuantity\": \"34956\"\n    },\n    {\n      \"TokenHolderAddress\": \"0x000000000000084e91743124a982076c59f10084\",\n      \"TokenHolderQuantity\": \"1\"\n    },\n    {\n      \"TokenHolderAddress\": \"0x0000000000000d9054f605ca65a2647c2b521422\",\n      \"TokenHolderQuantity\": \"10000000\"\n    },\n    {\n      \"TokenHolderAddress\": \"0x0000000000002d534ff79e9c69e7fcc742f0be83\",\n      \"TokenHolderQuantity\": \"5\"\n    },\n    {\n      \"TokenHolderAddress\": \"0x0000000000003f5e74c1ba8a66b48e6f3d71ae82\",\n      \"TokenHolderQuantity\": \"1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d805375-beb0-4a7f-96fe-2cf13b43baa7",
+          "name": "Get Token Info by ContractAddress",
+          "request": {
+            "name": "Get Token Info by ContractAddress",
+            "description": {
+              "content": "Returns project information and social media links of an ERC20/ERC721/ERC1155 token. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier. PRO endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "token"
+                },
+                {
+                  "key": "action",
+                  "value": "tokeninfo"
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82680dbc-15c7-484b-ad56-a39f81519fd2",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contractaddress",
+                      "value": "0x0e3a2a1f2146d86a604adc220b4967a898d7fe07"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"contractAddress\": \"0x0e3a2a1f2146d86a604adc220b4967a898d7fe07\",\n      \"tokenName\": \"Gods Unchained Cards\",\n      \"symbol\": \"CARD\",\n      \"divisor\": \"0\",\n      \"tokenType\": \"ERC721\",\n      \"totalSupply\": \"6962498\",\n      \"blueCheckmark\": \"true\",\n      \"description\": \"A TCG on the Ethereum blockchain that uses NFT's to bring real ownership to in-game assets.\",\n      \"website\": \"https://godsunchained.com/\",\n      \"email\": \"\",\n      \"blog\": \"https://medium.com/@fuelgames\",\n      \"reddit\": \"https://www.reddit.com/r/GodsUnchained/\",\n      \"slack\": \"\",\n      \"facebook\": \"https://www.facebook.com/godsunchained/\",\n      \"twitter\": \"https://twitter.com/godsunchained\",\n      \"bitcointalk\": \"\",\n      \"github\": \"\",\n      \"telegram\": \"\",\n      \"wechat\": \"\",\n      \"linkedin\": \"\",\n      \"discord\": \"https://discordapp.com/invite/DKGr2pW\",\n      \"whitepaper\": \"\",\n      \"tokenPriceUSD\": \"0.000000000000000000\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93f3abc4-4d88-464f-b5ac-bd7a2661eac3",
+          "name": "Get Address ERC20 Token Holding",
+          "request": {
+            "name": "Get Address ERC20 Token Holding",
+            "description": {
+              "content": "Returns the ERC-20 tokens and amount held by an address. Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "account"
+                },
+                {
+                  "key": "action",
+                  "value": "addresstokenbalance"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7aa996ab-dae2-4913-870b-c94cebce51fd",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "0x983e3660c0bE01991785F80f266A84B911ab59b0"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2094"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "622"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"TokenAddress\": \"0xffffffff2ba8f66d4e51811c5190992176930278\",\n      \"TokenName\": \"Furucombo\",\n      \"TokenSymbol\": \"COMBO\",\n      \"TokenQuantity\": \"1861606940000000000\",\n      \"TokenDivisor\": \"18\"\n    },\n    {\n      \"TokenAddress\": \"0x53a1e9912323b8016424d6287286e3b6de263f76\",\n      \"TokenName\": \"PUTIN Token\",\n      \"TokenSymbol\": \"PTT\",\n      \"TokenQuantity\": \"3500000000000000000000\",\n      \"TokenDivisor\": \"18\"\n    },\n    {\n      \"TokenAddress\": \"0xb753428af26e81097e7fd17f40c88aaa3e04902c\",\n      \"TokenName\": \"Spice\",\n      \"TokenSymbol\": \"SFI\",\n      \"TokenQuantity\": \"7\",\n      \"TokenDivisor\": \"18\"\n    },\n    {\n      \"TokenAddress\": \"0x1b40183efb4dd766f11bda7a7c3ad8982e998421\",\n      \"TokenName\": \"VesperToken\",\n      \"TokenSymbol\": \"VSP\",\n      \"TokenQuantity\": \"962\",\n      \"TokenDivisor\": \"18\"\n    },\n    {\n      \"TokenAddress\": \"0x37e83a94c6b1bdb816b59ac71dd02cf154d8111f\",\n      \"TokenName\": \"PhotoChromic\",\n      \"TokenSymbol\": \"PHCR\",\n      \"TokenQuantity\": \"4608452961264910063288\",\n      \"TokenDivisor\": \"18\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b71aa92-8372-4639-971e-e74308b4a39f",
+          "name": "Get Address ERC721 Token Holding",
+          "request": {
+            "name": "Get Address ERC721 Token Holding",
+            "description": {
+              "content": "Returns the ERC-721 tokens and amount held by an address. Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "account"
+                },
+                {
+                  "key": "action",
+                  "value": "addresstokennftbalance"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96385fb2-f6db-4775-874e-16488ec64e8c",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "0x6b52e83941eb10f9c613c395a834457559a80114"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2094"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "622"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"TokenAddress\": \"0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b\",\n      \"TokenName\": \"CloneX\",\n      \"TokenSymbol\": \"CloneX\",\n      \"TokenQuantity\": \"52\"\n    },\n    {\n      \"TokenAddress\": \"0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d\",\n      \"TokenName\": \"BoredApeYachtClub\",\n      \"TokenSymbol\": \"BAYC\",\n      \"TokenQuantity\": \"1\"\n    },\n    {\n      \"TokenAddress\": \"0x60e4d786628fea6478f785a6d7e704777c86a7c6\",\n      \"TokenName\": \"MutantApeYachtClub\",\n      \"TokenSymbol\": \"MAYC\",\n      \"TokenQuantity\": \"1\"\n    },\n    {\n      \"TokenAddress\": \"0xed5af388653567af2f388e6224dc7c4b3241c544\",\n      \"TokenName\": \"Azuki\",\n      \"TokenSymbol\": \"AZUKI\",\n      \"TokenQuantity\": \"1\"\n    },\n    {\n      \"TokenAddress\": \"0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7\",\n      \"TokenName\": \"Meebits\",\n      \"TokenSymbol\": \"⚇\",\n      \"TokenQuantity\": \"1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bca5d352-8d0c-456d-aaee-a5faf8ab1d49",
+          "name": "Get Address ERC721 Token Inventory By Contract Address",
+          "request": {
+            "name": "Get Address ERC721 Token Inventory By Contract Address",
+            "description": {
+              "content": "Returns the ERC-721 token inventory of an address, filtered by contract address. 📝 Note : This endpoint is throttled to 2 calls/second regardless of API Pro tier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "account"
+                },
+                {
+                  "key": "action",
+                  "value": "addresstokennftinventory"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5aab0f17-7db0-4b86-83d6-683300b96b3d",
+              "name": "Operation result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "0x123432244443b54409430979df8333f9308a6040"
+                    },
+                    {
+                      "key": "contractaddress",
+                      "value": "0xed5af388653567af2f388e6224dc7c4b3241c544"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2094"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "89"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": [\n    {\n      \"TokenAddress\": \"0xed5af388653567af2f388e6224dc7c4b3241c544\",\n      \"TokenId\": \"5401\"\n    },\n    {\n      \"TokenAddress\": \"0xed5af388653567af2f388e6224dc7c4b3241c544\",\n      \"TokenId\": \"7411\"\n    },\n    {\n      \"TokenAddress\": \"0xed5af388653567af2f388e6224dc7c4b3241c544\",\n      \"TokenId\": \"453\"\n    },\n    {\n      \"TokenAddress\": \"0xed5af388653567af2f388e6224dc7c4b3241c544\",\n      \"TokenId\": \"8080\"\n    },\n    {\n      \"TokenAddress\": \"0xed5af388653567af2f388e6224dc7c4b3241c544\",\n      \"TokenId\": \"4255\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.basescan.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2e2a7e36-1022-4168-b3f4-cb8b8c237c3b",
+    "name": "Basescan Accounts Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.",
+      "type": "text/plain"
+    }
+  }
+}

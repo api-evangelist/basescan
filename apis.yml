@@ -15,6 +15,16 @@ accessModel:
   method: derived
 image: https://basescan.org/images/brandassets/basescan-logo-circle.png
 tags:
+  - Blockchain
+  - Base
+  - L2
+  - Explorer
+  - Ethereum
+  - EVM
+  - Transaction
+  - Tokens
+  - Smart Contracts
+tags_raw:
   - blockchain
   - Base
   - L2
@@ -35,6 +45,8 @@ apis:
   humanURL: https://docs.basescan.org
   baseURL: https://api.basescan.org/api
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -314,6 +326,8 @@ apis:
   humanURL: https://docs.basescan.org
   baseURL: https://api.basescan.org/api
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI

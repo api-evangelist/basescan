@@ -1,5 +1,8 @@
 name: Basescan
-description: Base L2 blockchain explorer with a REST API for querying Base network transactions, token balances, smart contract ABIs, ERC-20 transfer events, gas prices, and block data. Powered by the Etherscan team and migrated to the unified Etherscan API V2 platform, enabling access to 50+ EVM chains with a single API key using chain ID 8453 for Base.
+description: Base L2 blockchain explorer with a REST API for querying Base network transactions, token
+  balances, smart contract ABIs, ERC-20 transfer events, gas prices, and block data. Powered by the Etherscan
+  team and migrated to the unified Etherscan API V2 platform, enabling access to 50+ EVM chains with a
+  single API key using chain ID 8453 for Base.
 deliveryModel:
   model: saas
   open_source: false
@@ -28,27 +31,27 @@ accessModel:
   method: derived
 image: https://basescan.org/images/brandassets/basescan-logo-circle.png
 tags:
-  - Blockchain
-  - Base
-  - L2
-  - Explorer
-  - Ethereum
-  - EVM
-  - Transaction
-  - Tokens
-  - Smart Contracts
+- Blockchain
+- Base
+- L2
+- Explorer
+- Ethereum
+- EVM
+- Transaction
+- Tokens
+- Smart Contracts
 tags_raw:
-  - blockchain
-  - Base
-  - L2
-  - explorer
-  - Ethereum
-  - EVM
-  - transactions
-  - tokens
-  - smart contracts
+- blockchain
+- Base
+- L2
+- explorer
+- Ethereum
+- EVM
+- transactions
+- tokens
+- smart contracts
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-09-16'
 url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
@@ -67,14 +70,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -98,14 +98,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -129,14 +126,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -160,14 +154,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -191,14 +182,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -222,14 +210,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -253,14 +238,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -284,14 +266,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -315,14 +294,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -348,14 +324,11 @@ apis:
   - type: Documentation
     url: https://docs.basescan.org
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/basescan/refs/heads/main/finops/finops.yml
   - type: Signup
     url: https://basescan.org/register
   - type: Login
@@ -367,24 +340,26 @@ apis:
   - type: FAQ
     url: https://info.basescan.org
 common:
-  - type: AgenticAccess
-    url: agentic-access/basescan-agentic-access.yml
-  - type: DomainSecurity
-    url: security/basescan-domain-security.yml
-  - type: Authentication
-    url: authentication/basescan-authentication.yml
-  - type: Authentication
-    url: https://basescan.org/myapikey
-  - type: Plans
-    url: https://etherscan.io/apis?id=8453
-  - type: PrivacyPolicy
-    url: https://etherscan.io/privacyPolicy
-  - type: TermsOfService
-    url: https://etherscan.io/terms
-  - type: Blog
-    url: https://info.basescan.org
-  - type: Support
-    url: https://info.basescan.org
+- type: Website
+  url: https://basescan.org
+- type: AgenticAccess
+  url: agentic-access/basescan-agentic-access.yml
+- type: DomainSecurity
+  url: security/basescan-domain-security.yml
+- type: Authentication
+  url: authentication/basescan-authentication.yml
+- type: Authentication
+  url: https://basescan.org/myapikey
+- type: Plans
+  url: https://etherscan.io/apis?id=8453
+- type: PrivacyPolicy
+  url: https://etherscan.io/privacyPolicy
+- type: TermsOfService
+  url: https://etherscan.io/terms
+- type: Blog
+  url: https://info.basescan.org
+- type: Support
+  url: https://info.basescan.org
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

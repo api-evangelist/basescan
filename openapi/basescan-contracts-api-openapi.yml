@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Basescan Accounts Contracts API
+  title: Basescan Contracts API
   version: 1.0.0
   description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
   license:
@@ -204,25 +204,20 @@ paths:
                 result: Pass - Verified
 components:
   schemas:
-    Result.contract.getcontractcreation:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              contractAddress:
-                $ref: '#/components/schemas/AddressHash'
-              contractCreator:
-                $ref: '#/components/schemas/AddressHash'
-              txHash:
-                $ref: '#/components/schemas/TxHash'
+    GUID:
+      type: string
+      pattern: '[a-z0-9]{50}'
+      example: x3ryqcqr1zdknhfhkimqmiabcdfxncqc6nrvp3pgrcpfsqedqi
     ResultArrayOfObjects:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/ArrayOfObjects'
+    ArrayOfObjects:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
     Post.contract.verifysourcecode:
       type: object
       properties:
@@ -251,6 +246,72 @@ components:
       - contractaddress
       - contractname
       - compilerversion
+    CodeFormat:
+      type: string
+      description: single file -- use `solidity-single-file`; JSON file ( recommended ) -- use `solidity-standard-json-input`
+      enum:
+      - solidity-single-file
+      - solidity-standard-json-input
+    ResponseNOTOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '0'
+        message:
+          type: string
+          pattern: ^NOTOK(-.*)?$
+          examples:
+          - NOTOK
+          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
+        result:
+          type: string
+      required:
+      - status
+      - message
+      - result
+    TxHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{64}
+      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    Result.contract.checkverifystatus:
+      type: object
+      properties:
+        result:
+          type: string
+          const: Pass - Verified
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    Result.contract.verifysourcecode:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/GUID'
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    Result.contract.getabi:
+      type: object
+      properties:
+        result:
+          type: string
     ChainId:
       type: integer
       summary: the chain to submit verification, such as 1 for mainnet
@@ -386,81 +447,20 @@ components:
         | Testnet BlastScan           | 23888    |
 
         '
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    Result.contract.checkverifystatus:
+    Result.contract.getcontractcreation:
       type: object
       properties:
         result:
-          type: string
-          const: Pass - Verified
-    CodeFormat:
-      type: string
-      description: single file -- use `solidity-single-file`; JSON file ( recommended ) -- use `solidity-standard-json-input`
-      enum:
-      - solidity-single-file
-      - solidity-standard-json-input
-    ResponseOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '1'
-        message:
-          type: string
-          enum:
-          - OK
-        result:
-          description: call result
-      required:
-      - status
-      - message
-      - result
-    TxHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{64}
-      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
-    ArrayOfObjects:
-      type: array
-      items:
-        type: object
-        additionalProperties: true
-    ResponseNOTOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '0'
-        message:
-          type: string
-          pattern: ^NOTOK(-.*)?$
-          examples:
-          - NOTOK
-          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
-        result:
-          type: string
-      required:
-      - status
-      - message
-      - result
-    GUID:
-      type: string
-      pattern: '[a-z0-9]{50}'
-      example: x3ryqcqr1zdknhfhkimqmiabcdfxncqc6nrvp3pgrcpfsqedqi
-    Result.contract.getabi:
-      type: object
-      properties:
-        result:
-          type: string
-    Result.contract.verifysourcecode:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/GUID'
+          type: array
+          items:
+            type: object
+            properties:
+              contractAddress:
+                $ref: '#/components/schemas/AddressHash'
+              contractCreator:
+                $ref: '#/components/schemas/AddressHash'
+              txHash:
+                $ref: '#/components/schemas/TxHash'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

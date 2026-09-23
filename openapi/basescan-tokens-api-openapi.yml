@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Basescan Accounts Tokens API
+  title: Basescan Tokens API
   version: 1.0.0
   description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
   license:
@@ -463,41 +463,14 @@ paths:
                   TokenId: '4255'
 components:
   schemas:
+    Result.stats.tokensupplyhistory:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
     IntegerMin0:
       type: integer
       minimum: 0
-    Result.account.addresstokenbalance:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              TokenAddress:
-                $ref: '#/components/schemas/AddressHash'
-              TokenName:
-                type: string
-              TokenSymbol:
-                type: string
-              TokenQuantity:
-                $ref: '#/components/schemas/IntegerMin0String'
-              TokenDivisor:
-                $ref: '#/components/schemas/IntegerMin0String'
-    Result.token.tokeninfo:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-          maxItems: 1
-    IntegerMin1Max1000:
-      type: integer
-      format: int32
-      minimum: 1
-      maximum: 1000
     Result.account.tokenbalancehistory:
       type: object
       properties:
@@ -527,65 +500,15 @@ components:
                 $ref: '#/components/schemas/AddressHash'
               TokenHolderQuantity:
                 $ref: '#/components/schemas/IntegerMin0String'
-    Result.account.addresstokennftbalance:
+    Result.token.tokeninfo:
       type: object
       properties:
         result:
           type: array
           items:
             type: object
-            properties:
-              TokenAddress:
-                $ref: '#/components/schemas/AddressHash'
-              TokenName:
-                type: string
-              TokenSymbol:
-                type: string
-              TokenQuantity:
-                $ref: '#/components/schemas/IntegerMin0String'
-    Result.stats.tokensupplyhistory:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
-    IntegerMin0String:
-      type: string
-      pattern: '[0-9]+'
-      description: An integer greater than 0 represented as a string.
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    Result.stats.tokensupply:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
-    ResponseOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '1'
-        message:
-          type: string
-          enum:
-          - OK
-        result:
-          description: call result
-      required:
-      - status
-      - message
-      - result
-    Result.account.tokenbalance:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
-    IntegerMin1:
-      type: integer
-      minimum: 1
+            additionalProperties: true
+          maxItems: 1
     ResponseNOTOK:
       type: object
       properties:
@@ -605,6 +528,83 @@ components:
       - status
       - message
       - result
+    IntegerMin1Max1000:
+      type: integer
+      format: int32
+      minimum: 1
+      maximum: 1000
+    Result.account.addresstokenbalance:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              TokenAddress:
+                $ref: '#/components/schemas/AddressHash'
+              TokenName:
+                type: string
+              TokenSymbol:
+                type: string
+              TokenQuantity:
+                $ref: '#/components/schemas/IntegerMin0String'
+              TokenDivisor:
+                $ref: '#/components/schemas/IntegerMin0String'
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    Result.account.addresstokennftbalance:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              TokenAddress:
+                $ref: '#/components/schemas/AddressHash'
+              TokenName:
+                type: string
+              TokenSymbol:
+                type: string
+              TokenQuantity:
+                $ref: '#/components/schemas/IntegerMin0String'
+    IntegerMin1:
+      type: integer
+      minimum: 1
+    Result.stats.tokensupply:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
+    Result.account.tokenbalance:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

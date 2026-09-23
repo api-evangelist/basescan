@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Basescan Accounts Transactions API
+  title: Basescan Transactions API
   version: 1.0.0
   description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
   license:
@@ -83,31 +83,10 @@ paths:
                   status: '1'
 components:
   schemas:
-    Result.transaction.gettxreceiptstatus:
+    Result.transaction.getstatus:
       type: object
       additionalProperties: true
-    ResponseOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '1'
-        message:
-          type: string
-          enum:
-          - OK
-        result:
-          description: call result
-      required:
-      - status
-      - message
-      - result
-    TxHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{64}
-      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
-    Result.transaction.getstatus:
+    Result.transaction.gettxreceiptstatus:
       type: object
       additionalProperties: true
     ResponseNOTOK:
@@ -129,6 +108,27 @@ components:
       - status
       - message
       - result
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    TxHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{64}
+      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

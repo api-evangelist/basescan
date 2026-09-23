@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Basescan Accounts Logs API
+  title: Basescan Logs API
   version: 1.0.0
   description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
   license:
@@ -283,60 +283,22 @@ paths:
                   transactionIndex: '0x92'
 components:
   schemas:
-    IntegerMin0:
-      type: integer
-      minimum: 0
-    IntegerMin1Max1000:
-      type: integer
-      format: int32
-      minimum: 1
-      maximum: 1000
     ResultArrayOfObjects:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/ArrayOfObjects'
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
+    IntegerMin0:
+      type: integer
+      minimum: 0
+    IntegerMin1:
+      type: integer
+      minimum: 1
     ArrayOfObjects:
       type: array
       items:
         type: object
         additionalProperties: true
-    TopicOperator:
-      type: string
-      enum:
-      - and
-      - or
-    ResponseOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '1'
-        message:
-          type: string
-          enum:
-          - OK
-        result:
-          description: call result
-      required:
-      - status
-      - message
-      - result
-    Topic:
-      type: string
-      enum:
-      - topic0
-      - topic1
-      - topic2
-      - topic3
-    IntegerMin1:
-      type: integer
-      minimum: 1
     ResponseNOTOK:
       type: object
       properties:
@@ -356,6 +318,44 @@ components:
       - status
       - message
       - result
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    Topic:
+      type: string
+      enum:
+      - topic0
+      - topic1
+      - topic2
+      - topic3
+    IntegerMin1Max1000:
+      type: integer
+      format: int32
+      minimum: 1
+      maximum: 1000
+    TopicOperator:
+      type: string
+      enum:
+      - and
+      - or
   securitySchemes:
     apiKeyAuth:
       type: apiKey

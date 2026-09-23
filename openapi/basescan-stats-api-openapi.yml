@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Basescan Accounts Stats API
+  title: Basescan Stats API
   version: 1.0.0
   description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
   license:
@@ -571,55 +571,55 @@ paths:
                   value: '136.29'
 components:
   schemas:
-    SyncMode:
+    IntegerMin0:
+      type: integer
+      minimum: 0
+    Result.stats.ethsupply2:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            EthSupply:
+              $ref: '#/components/schemas/IntegerMin0String'
+            Eth2Staking:
+              $ref: '#/components/schemas/IntegerMin0String'
+            BurntFees:
+              $ref: '#/components/schemas/IntegerMin0String'
+            WithdrawnTotal:
+              $ref: '#/components/schemas/IntegerMin0String'
+    Result.stats.dailynetutilization:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              networkUtilization:
+                $ref: '#/components/schemas/FloatString'
+    Result.stats.dailyavgnetdifficulty:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              networkDifficulty:
+                $ref: '#/components/schemas/FloatWithCommasString'
+    FloatWithCommasString:
       type: string
-      enum:
-      - default
-      - Default
-      - archive
-      - Archive
-    Result.stats.ethdailyprice:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              UTCDate:
-                $ref: '#/components/schemas/DateYYYYMMDD'
-              unixTimeStamp:
-                $ref: '#/components/schemas/UnixTimestampString'
-              value:
-                $ref: '#/components/schemas/FloatString'
-    Result.stats.dailytxnfee:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              UTCDate:
-                $ref: '#/components/schemas/DateYYYYMMDD'
-              unixTimeStamp:
-                $ref: '#/components/schemas/UnixTimestampString'
-              transactionFee_Eth:
-                $ref: '#/components/schemas/FloatString'
-    Result.stats.dailytx:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              UTCDate:
-                $ref: '#/components/schemas/DateYYYYMMDD'
-              unixTimeStamp:
-                $ref: '#/components/schemas/UnixTimestampString'
-              transactionCount:
-                $ref: '#/components/schemas/IntegerMin0'
+      pattern: ^\d{1,3}(,?\d{3})*(\.\d+)?$
+      description: A float represented as a string, with optional comma delimiters
     Result.stats.dailyavghashrate:
       type: object
       properties:
@@ -633,6 +633,29 @@ components:
               unixTimeStamp:
                 $ref: '#/components/schemas/UnixTimestampString'
               networkHashRate:
+                $ref: '#/components/schemas/FloatString'
+    UnixTimestampString:
+      type: string
+      description: A Unix timestamp representing the number of seconds since January 1, 1970, expressed as a string.
+      pattern: ^[0-9]+$
+      example: '1623338323'
+    Result.stats.ethdailymarketcap:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              supply:
+                $ref: '#/components/schemas/FloatString'
+              marketCap:
+                $ref: '#/components/schemas/FloatString'
+              price:
                 $ref: '#/components/schemas/FloatString'
     Result.stats.chainsize:
       type: object
@@ -652,11 +675,6 @@ components:
                 $ref: '#/components/schemas/ClientType'
               syncMode:
                 $ref: '#/components/schemas/SyncMode'
-    PageSort:
-      type: string
-      enum:
-      - asc
-      - desc
     ClientType:
       type: string
       enum:
@@ -664,61 +682,12 @@ components:
       - Geth
       - parity
       - Parity
-    FloatString:
+    PageSort:
       type: string
-      pattern: ^\d+(\.\d+)?$
-      description: A float represented as a string.
-    ResponseOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '1'
-        message:
-          type: string
-          enum:
-          - OK
-        result:
-          description: call result
-      required:
-      - status
-      - message
-      - result
-    Result.stats.ethprice:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            ethbtc:
-              $ref: '#/components/schemas/FloatString'
-            ethbtc_timestamp:
-              $ref: '#/components/schemas/UnixTimestampString'
-            ethusd:
-              $ref: '#/components/schemas/FloatString'
-            ethusd_timestamp:
-              $ref: '#/components/schemas/UnixTimestampString'
-    Result.stats.ethsupply2:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            EthSupply:
-              $ref: '#/components/schemas/IntegerMin0String'
-            Eth2Staking:
-              $ref: '#/components/schemas/IntegerMin0String'
-            BurntFees:
-              $ref: '#/components/schemas/IntegerMin0String'
-            WithdrawnTotal:
-              $ref: '#/components/schemas/IntegerMin0String'
-    UnixTimestampString:
-      type: string
-      description: A Unix timestamp representing the number of seconds since January 1, 1970, expressed as a string.
-      pattern: ^[0-9]+$
-      example: '1623338323'
-    Result.stats.dailynetutilization:
+      enum:
+      - asc
+      - desc
+    Result.stats.dailytx:
       type: object
       properties:
         result:
@@ -730,85 +699,8 @@ components:
                 $ref: '#/components/schemas/DateYYYYMMDD'
               unixTimeStamp:
                 $ref: '#/components/schemas/UnixTimestampString'
-              networkUtilization:
-                $ref: '#/components/schemas/FloatString'
-    Result.stats.nodecount:
-      type: object
-      properties:
-        result:
-          type: object
-          properties:
-            UTCDate:
-              $ref: '#/components/schemas/DateYYYYMMDD'
-            TotalNodeCount:
-              $ref: '#/components/schemas/IntegerMin0String'
-    Result.stats.ethsupply:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
-    IntegerMin0String:
-      type: string
-      pattern: '[0-9]+'
-      description: An integer greater than 0 represented as a string.
-    Result.stats.dailynewaddress:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              UTCDate:
-                $ref: '#/components/schemas/DateYYYYMMDD'
-              unixTimeStamp:
-                $ref: '#/components/schemas/UnixTimestampString'
-              newAddressCount:
+              transactionCount:
                 $ref: '#/components/schemas/IntegerMin0'
-    Result.stats.ethdailymarketcap:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              UTCDate:
-                $ref: '#/components/schemas/DateYYYYMMDD'
-              unixTimeStamp:
-                $ref: '#/components/schemas/UnixTimestampString'
-              supply:
-                $ref: '#/components/schemas/FloatString'
-              marketCap:
-                $ref: '#/components/schemas/FloatString'
-              price:
-                $ref: '#/components/schemas/FloatString'
-    IntegerMin0:
-      type: integer
-      minimum: 0
-    Result.stats.dailyavgnetdifficulty:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              UTCDate:
-                $ref: '#/components/schemas/DateYYYYMMDD'
-              unixTimeStamp:
-                $ref: '#/components/schemas/UnixTimestampString'
-              networkDifficulty:
-                $ref: '#/components/schemas/FloatWithCommasString'
-    DateYYYYMMDD:
-      type: string
-      format: date
-      description: A date in the YYYY-MM-DD format
-      example: '2019-02-01'
-    FloatWithCommasString:
-      type: string
-      pattern: ^\d{1,3}(,?\d{3})*(\.\d+)?$
-      description: A float represented as a string, with optional comma delimiters
     ResponseNOTOK:
       type: object
       properties:
@@ -828,6 +720,114 @@ components:
       - status
       - message
       - result
+    Result.stats.ethprice:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            ethbtc:
+              $ref: '#/components/schemas/FloatString'
+            ethbtc_timestamp:
+              $ref: '#/components/schemas/UnixTimestampString'
+            ethusd:
+              $ref: '#/components/schemas/FloatString'
+            ethusd_timestamp:
+              $ref: '#/components/schemas/UnixTimestampString'
+    FloatString:
+      type: string
+      pattern: ^\d+(\.\d+)?$
+      description: A float represented as a string.
+    DateYYYYMMDD:
+      type: string
+      format: date
+      description: A date in the YYYY-MM-DD format
+      example: '2019-02-01'
+    Result.stats.ethdailyprice:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              value:
+                $ref: '#/components/schemas/FloatString'
+    SyncMode:
+      type: string
+      enum:
+      - default
+      - Default
+      - archive
+      - Archive
+    Result.stats.dailynewaddress:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              newAddressCount:
+                $ref: '#/components/schemas/IntegerMin0'
+    Result.stats.ethsupply:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    Result.stats.nodecount:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            UTCDate:
+              $ref: '#/components/schemas/DateYYYYMMDD'
+            TotalNodeCount:
+              $ref: '#/components/schemas/IntegerMin0String'
+    Result.stats.dailytxnfee:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              transactionFee_Eth:
+                $ref: '#/components/schemas/FloatString'
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

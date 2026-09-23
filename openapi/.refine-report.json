@@ -1,20 +1,11 @@
 {
   "provider": "basescan",
   "sources": [
-    "basescan-accounts-api-openapi.yml",
-    "basescan-api-pro-endpoints-api-openapi.yml",
-    "basescan-blocks-api-openapi.yml",
-    "basescan-contracts-api-openapi.yml",
-    "basescan-gas-tracker-api-openapi.yml",
-    "basescan-geth-parity-proxy-api-openapi.yml",
-    "basescan-logs-api-openapi.yml",
-    "basescan-stats-api-openapi.yml",
-    "basescan-tokens-api-openapi.yml",
-    "basescan-transactions-api-openapi.yml"
+    "_original/openapi.yml"
   ],
   "outputs": [
-    "basescan-accounts-api-openapi.yml",
     "basescan-api-pro-endpoints-api-openapi.yml",
+    "basescan-accounts-api-openapi.yml",
     "basescan-blocks-api-openapi.yml",
     "basescan-contracts-api-openapi.yml",
     "basescan-gas-tracker-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "basescan-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-api-pro-endpoints-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-blocks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-contracts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-gas-tracker-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-geth-parity-proxy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "basescan-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

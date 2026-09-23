@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Basescan Accounts API
   version: 1.0.0
@@ -926,83 +926,35 @@ paths:
                 result: '610538078574759898951277'
 components:
   schemas:
-    IntegerMin0:
-      type: integer
-      minimum: 0
-    Result.account.balance:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
-    BlockType:
-      type: string
-      enum:
-      - blocks
-      - uncles
     ResultArrayOfObjects:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/ArrayOfObjects'
-    IntegerMin0String:
-      type: string
-      pattern: '[0-9]+'
-      description: An integer greater than 0 represented as a string.
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    ArrayOfObjects:
-      type: array
-      items:
-        type: object
-        additionalProperties: true
-    Result.account.balancemulti:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              account:
-                $ref: '#/components/schemas/AddressHash'
-              balance:
-                $ref: '#/components/schemas/IntegerMin0String'
-    ResponseOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '1'
-        message:
-          type: string
-          enum:
-          - OK
-        result:
-          description: call result
-      required:
-      - status
-      - message
-      - result
-    TxHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{64}
-      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
-    PageSort:
+    IntegerMin0:
+      type: integer
+      minimum: 0
+    BlockTag:
       type: string
       enum:
-      - asc
-      - desc
-    IntegerMin1:
-      type: integer
-      minimum: 1
+      - earliest
+      - latest
+      - pending
     Result.account.balancehistory:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/IntegerMin0String'
+    ArrayOfObjects:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
+    PageSort:
+      type: string
+      enum:
+      - asc
+      - desc
     ResponseNOTOK:
       type: object
       properties:
@@ -1022,12 +974,60 @@ components:
       - status
       - message
       - result
-    BlockTag:
+    Result.account.balancemulti:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              account:
+                $ref: '#/components/schemas/AddressHash'
+              balance:
+                $ref: '#/components/schemas/IntegerMin0String'
+    TxHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{64}
+      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    IntegerMin1:
+      type: integer
+      minimum: 1
+    BlockType:
       type: string
       enum:
-      - earliest
-      - latest
-      - pending
+      - blocks
+      - uncles
+    Result.account.balance:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

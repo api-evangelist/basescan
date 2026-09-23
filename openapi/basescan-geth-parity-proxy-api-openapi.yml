@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Basescan Accounts Geth/Parity Proxy API
+  title: Basescan Geth/Parity Proxy API
   version: 1.0.0
   description: Basescan is the leading blockchain explorer, search, API and analytics platform for Base (L2), an Ethereum Layer 2 network. Powered by the Etherscan team and compatible with the unified Etherscan API V2 platform using chain ID 8453 for Base network access.
   license:
@@ -635,46 +635,17 @@ paths:
                 result: '0x6556'
 components:
   schemas:
-    Result.proxy.eth_getTransactionByBlockNumberAndIndex:
+    Result.proxy.eth_getUncleByBlockNumberAndIndex:
       type: object
       additionalProperties: true
-    Result.proxy.eth_getBlockByNumber:
-      type: object
-      additionalProperties: true
-    Boolean:
-      type: boolean
-    Result.proxy.eth_blockNumber:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
-    ProxyResponseNOTOK:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-          const: '2.0'
-        id:
-          $ref: '#/components/schemas/IntegerMin1'
-        error:
-          type: object
-          properties:
-            code:
-              $ref: '#/components/schemas/ProxyResponseErrorCode'
-            message:
-              type: string
-          required:
-          - code
-          - message
-      required:
-      - jsonrpc
-      - id
-      - error
-    Result.proxy.eth_estimateGas:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
+    TxHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{64}
+      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
     Result.proxy.eth_getStorageAt:
       type: object
       properties:
@@ -697,43 +668,34 @@ components:
       - jsonrpc
       - id
       - result
-    Result.proxy.eth_getTransactionReceipt:
-      type: object
-      additionalProperties: true
-    IntegerMin1:
-      type: integer
-      minimum: 1
-    BlockTag:
-      type: string
-      enum:
-      - earliest
-      - latest
-      - pending
-    Result.proxy.eth_getBlockTransactionCountByNumber:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
-    Result.proxy.eth_getTransactionCount:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
-    Result.proxy.eth_gasPrice:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
     Result.proxy.eth_getCode:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/Hex0xPrefixed'
+    Result.proxy.eth_getBlockTransactionCountByNumber:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    Result.proxy.eth_blockNumber:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    Result.proxy.eth_getTransactionByBlockNumberAndIndex:
+      type: object
+      additionalProperties: true
     Result.proxy.eth_call:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/TxHash'
+    Result.proxy.eth_estimateGas:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
     ProxyResponseErrorCode:
       type: integer
       description: '| Code    | Message                            | Description                                                                                           |
@@ -778,24 +740,62 @@ components:
       - -32004
       - -32005
       - -32006
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    Hex0xPrefixed:
-      type: string
-      pattern: ^0x[0-9a-fA-F]+$
-      description: A hexadecimal number starting with '0x'.
+    Result.proxy.eth_getTransactionCount:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    Boolean:
+      type: boolean
     Result.proxy.eth_sendRawTransaction:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/TxHash'
-    TxHash:
+    Result.proxy.eth_getTransactionReceipt:
+      type: object
+      additionalProperties: true
+    Result.proxy.eth_gasPrice:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    BlockTag:
       type: string
-      pattern: 0x[A-Fa-f0-9]{64}
-      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
-    Result.proxy.eth_getUncleByBlockNumberAndIndex:
+      enum:
+      - earliest
+      - latest
+      - pending
+    Hex0xPrefixed:
+      type: string
+      pattern: ^0x[0-9a-fA-F]+$
+      description: A hexadecimal number starting with '0x'.
+    ProxyResponseNOTOK:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+          const: '2.0'
+        id:
+          $ref: '#/components/schemas/IntegerMin1'
+        error:
+          type: object
+          properties:
+            code:
+              $ref: '#/components/schemas/ProxyResponseErrorCode'
+            message:
+              type: string
+          required:
+          - code
+          - message
+      required:
+      - jsonrpc
+      - id
+      - error
+    IntegerMin1:
+      type: integer
+      minimum: 1
+    Result.proxy.eth_getBlockByNumber:
       type: object
       additionalProperties: true
   securitySchemes:

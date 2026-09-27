@@ -204,20 +204,64 @@ paths:
                 result: Pass - Verified
 components:
   schemas:
+    Result.contract.getabi:
+      type: object
+      properties:
+        result:
+          type: string
     GUID:
       type: string
       pattern: '[a-z0-9]{50}'
       example: x3ryqcqr1zdknhfhkimqmiabcdfxncqc6nrvp3pgrcpfsqedqi
-    ResultArrayOfObjects:
+    Result.contract.checkverifystatus:
       type: object
       properties:
         result:
-          $ref: '#/components/schemas/ArrayOfObjects'
+          type: string
+          const: Pass - Verified
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    CodeFormat:
+      type: string
+      description: single file -- use `solidity-single-file`; JSON file ( recommended ) -- use `solidity-standard-json-input`
+      enum:
+      - solidity-single-file
+      - solidity-standard-json-input
     ArrayOfObjects:
       type: array
       items:
         type: object
         additionalProperties: true
+    ResponseNOTOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '0'
+        message:
+          type: string
+          pattern: ^NOTOK(-.*)?$
+          examples:
+          - NOTOK
+          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
+        result:
+          type: string
+      required:
+      - status
+      - message
+      - result
+    ResultArrayOfObjects:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/ArrayOfObjects'
+    TxHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{64}
+      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
     Post.contract.verifysourcecode:
       type: object
       properties:
@@ -246,50 +290,6 @@ components:
       - contractaddress
       - contractname
       - compilerversion
-    CodeFormat:
-      type: string
-      description: single file -- use `solidity-single-file`; JSON file ( recommended ) -- use `solidity-standard-json-input`
-      enum:
-      - solidity-single-file
-      - solidity-standard-json-input
-    ResponseNOTOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '0'
-        message:
-          type: string
-          pattern: ^NOTOK(-.*)?$
-          examples:
-          - NOTOK
-          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
-        result:
-          type: string
-      required:
-      - status
-      - message
-      - result
-    TxHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{64}
-      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
-    Result.contract.checkverifystatus:
-      type: object
-      properties:
-        result:
-          type: string
-          const: Pass - Verified
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    Result.contract.verifysourcecode:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/GUID'
     ResponseOK:
       type: object
       properties:
@@ -307,11 +307,20 @@ components:
       - status
       - message
       - result
-    Result.contract.getabi:
+    Result.contract.getcontractcreation:
       type: object
       properties:
         result:
-          type: string
+          type: array
+          items:
+            type: object
+            properties:
+              contractAddress:
+                $ref: '#/components/schemas/AddressHash'
+              contractCreator:
+                $ref: '#/components/schemas/AddressHash'
+              txHash:
+                $ref: '#/components/schemas/TxHash'
     ChainId:
       type: integer
       summary: the chain to submit verification, such as 1 for mainnet
@@ -447,20 +456,11 @@ components:
         | Testnet BlastScan           | 23888    |
 
         '
-    Result.contract.getcontractcreation:
+    Result.contract.verifysourcecode:
       type: object
       properties:
         result:
-          type: array
-          items:
-            type: object
-            properties:
-              contractAddress:
-                $ref: '#/components/schemas/AddressHash'
-              contractCreator:
-                $ref: '#/components/schemas/AddressHash'
-              txHash:
-                $ref: '#/components/schemas/TxHash'
+          $ref: '#/components/schemas/GUID'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -926,14 +926,22 @@ paths:
                 result: '610538078574759898951277'
 components:
   schemas:
-    ResultArrayOfObjects:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/ArrayOfObjects'
-    IntegerMin0:
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
+    IntegerMin1:
       type: integer
-      minimum: 0
+      minimum: 1
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    PageSort:
+      type: string
+      enum:
+      - asc
+      - desc
     BlockTag:
       type: string
       enum:
@@ -945,16 +953,18 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/IntegerMin0String'
-    ArrayOfObjects:
-      type: array
-      items:
-        type: object
-        additionalProperties: true
-    PageSort:
-      type: string
-      enum:
-      - asc
-      - desc
+    Result.account.balancemulti:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              account:
+                $ref: '#/components/schemas/AddressHash'
+              balance:
+                $ref: '#/components/schemas/IntegerMin0String'
     ResponseNOTOK:
       type: object
       properties:
@@ -974,22 +984,25 @@ components:
       - status
       - message
       - result
-    Result.account.balancemulti:
+    ResultArrayOfObjects:
       type: object
       properties:
         result:
-          type: array
-          items:
-            type: object
-            properties:
-              account:
-                $ref: '#/components/schemas/AddressHash'
-              balance:
-                $ref: '#/components/schemas/IntegerMin0String'
+          $ref: '#/components/schemas/ArrayOfObjects'
+    BlockType:
+      type: string
+      enum:
+      - blocks
+      - uncles
     TxHash:
       type: string
       pattern: 0x[A-Fa-f0-9]{64}
       example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    ArrayOfObjects:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
     ResponseOK:
       type: object
       properties:
@@ -1007,27 +1020,14 @@ components:
       - status
       - message
       - result
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    IntegerMin1:
+    IntegerMin0:
       type: integer
-      minimum: 1
-    BlockType:
-      type: string
-      enum:
-      - blocks
-      - uncles
+      minimum: 0
     Result.account.balance:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/IntegerMin0String'
-    IntegerMin0String:
-      type: string
-      pattern: '[0-9]+'
-      description: An integer greater than 0 represented as a string.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

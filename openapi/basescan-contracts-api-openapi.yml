@@ -204,64 +204,21 @@ paths:
                 result: Pass - Verified
 components:
   schemas:
-    Result.contract.getabi:
+    Result.contract.verifysourcecode:
       type: object
       properties:
         result:
-          type: string
-    GUID:
-      type: string
-      pattern: '[a-z0-9]{50}'
-      example: x3ryqcqr1zdknhfhkimqmiabcdfxncqc6nrvp3pgrcpfsqedqi
-    Result.contract.checkverifystatus:
-      type: object
-      properties:
-        result:
-          type: string
-          const: Pass - Verified
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    CodeFormat:
-      type: string
-      description: single file -- use `solidity-single-file`; JSON file ( recommended ) -- use `solidity-standard-json-input`
-      enum:
-      - solidity-single-file
-      - solidity-standard-json-input
-    ArrayOfObjects:
-      type: array
-      items:
-        type: object
-        additionalProperties: true
-    ResponseNOTOK:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - '0'
-        message:
-          type: string
-          pattern: ^NOTOK(-.*)?$
-          examples:
-          - NOTOK
-          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
-        result:
-          type: string
-      required:
-      - status
-      - message
-      - result
+          $ref: '#/components/schemas/GUID'
     ResultArrayOfObjects:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/ArrayOfObjects'
-    TxHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{64}
-      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    ArrayOfObjects:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
     Post.contract.verifysourcecode:
       type: object
       properties:
@@ -290,19 +247,30 @@ components:
       - contractaddress
       - contractname
       - compilerversion
-    ResponseOK:
+    Result.contract.getabi:
+      type: object
+      properties:
+        result:
+          type: string
+    TxHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{64}
+      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    ResponseNOTOK:
       type: object
       properties:
         status:
           type: string
           enum:
-          - '1'
+          - '0'
         message:
           type: string
-          enum:
-          - OK
+          pattern: ^NOTOK(-.*)?$
+          examples:
+          - NOTOK
+          - NOTOK-Missing/Invalid API Key, rate limit of 1/5sec applied
         result:
-          description: call result
+          type: string
       required:
       - status
       - message
@@ -321,6 +289,10 @@ components:
                 $ref: '#/components/schemas/AddressHash'
               txHash:
                 $ref: '#/components/schemas/TxHash'
+    GUID:
+      type: string
+      pattern: '[a-z0-9]{50}'
+      example: x3ryqcqr1zdknhfhkimqmiabcdfxncqc6nrvp3pgrcpfsqedqi
     ChainId:
       type: integer
       summary: the chain to submit verification, such as 1 for mainnet
@@ -456,11 +428,39 @@ components:
         | Testnet BlastScan           | 23888    |
 
         '
-    Result.contract.verifysourcecode:
+    CodeFormat:
+      type: string
+      description: single file -- use `solidity-single-file`; JSON file ( recommended ) -- use `solidity-standard-json-input`
+      enum:
+      - solidity-single-file
+      - solidity-standard-json-input
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    Result.contract.checkverifystatus:
       type: object
       properties:
         result:
-          $ref: '#/components/schemas/GUID'
+          type: string
+          const: Pass - Verified
+    ResponseOK:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - '1'
+        message:
+          type: string
+          enum:
+          - OK
+        result:
+          description: call result
+      required:
+      - status
+      - message
+      - result
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -635,29 +635,53 @@ paths:
                 result: '0x6556'
 components:
   schemas:
-    Result.proxy.eth_getTransactionByBlockNumberAndIndex:
-      type: object
-      additionalProperties: true
-    Boolean:
-      type: boolean
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    BlockTag:
-      type: string
-      enum:
-      - earliest
-      - latest
-      - pending
     Result.proxy.eth_getCode:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/Hex0xPrefixed'
-    Result.proxy.eth_getTransactionReceipt:
+    Hex0xPrefixed:
+      type: string
+      pattern: ^0x[0-9a-fA-F]+$
+      description: A hexadecimal number starting with '0x'.
+    TxHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{64}
+      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    Result.proxy.eth_estimateGas:
       type: object
-      additionalProperties: true
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    ProxyResponseOK:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+          const: '2.0'
+        id:
+          $ref: '#/components/schemas/IntegerMin1'
+        result:
+          description: call result
+      required:
+      - jsonrpc
+      - id
+      - result
+    Result.proxy.eth_getStorageAt:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    Result.proxy.eth_getBlockTransactionCountByNumber:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    Result.proxy.eth_gasPrice:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
     ProxyResponseNOTOK:
       type: object
       properties:
@@ -680,23 +704,56 @@ components:
       - jsonrpc
       - id
       - error
-    TxHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{64}
-      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
-    Result.proxy.eth_getStorageAt:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
-    Result.proxy.eth_getBlockTransactionCountByNumber:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
     IntegerMin1:
       type: integer
       minimum: 1
+    Result.proxy.eth_sendRawTransaction:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/TxHash'
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    Result.proxy.eth_getBlockByNumber:
+      type: object
+      additionalProperties: true
+    Result.proxy.eth_getTransactionByBlockNumberAndIndex:
+      type: object
+      additionalProperties: true
+    Result.proxy.eth_getTransactionByHash:
+      type: object
+      additionalProperties: true
+    Boolean:
+      type: boolean
+    Result.proxy.eth_getTransactionReceipt:
+      type: object
+      additionalProperties: true
+    Result.proxy.eth_blockNumber:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    Result.proxy.eth_call:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/TxHash'
+    Result.proxy.eth_getTransactionCount:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Hex0xPrefixed'
+    Result.proxy.eth_getUncleByBlockNumberAndIndex:
+      type: object
+      additionalProperties: true
+    BlockTag:
+      type: string
+      enum:
+      - earliest
+      - latest
+      - pending
     ProxyResponseErrorCode:
       type: integer
       description: '| Code    | Message                            | Description                                                                                           |
@@ -741,63 +798,6 @@ components:
       - -32004
       - -32005
       - -32006
-    Result.proxy.eth_estimateGas:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
-    Result.proxy.eth_getTransactionByHash:
-      type: object
-      additionalProperties: true
-    Result.proxy.eth_getUncleByBlockNumberAndIndex:
-      type: object
-      additionalProperties: true
-    Result.proxy.eth_blockNumber:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
-    Hex0xPrefixed:
-      type: string
-      pattern: ^0x[0-9a-fA-F]+$
-      description: A hexadecimal number starting with '0x'.
-    ProxyResponseOK:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-          const: '2.0'
-        id:
-          $ref: '#/components/schemas/IntegerMin1'
-        result:
-          description: call result
-      required:
-      - jsonrpc
-      - id
-      - result
-    Result.proxy.eth_gasPrice:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
-    Result.proxy.eth_getTransactionCount:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/Hex0xPrefixed'
-    Result.proxy.eth_call:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/TxHash'
-    Result.proxy.eth_getBlockByNumber:
-      type: object
-      additionalProperties: true
-    Result.proxy.eth_sendRawTransaction:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/TxHash'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -295,13 +295,16 @@ components:
       enum:
       - and
       - or
-    IntegerMin1:
-      type: integer
-      minimum: 1
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
+    ResultArrayOfObjects:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/ArrayOfObjects'
+    ArrayOfObjects:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
     ResponseNOTOK:
       type: object
       properties:
@@ -321,21 +324,21 @@ components:
       - status
       - message
       - result
-    ResultArrayOfObjects:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/ArrayOfObjects'
     IntegerMin1Max1000:
       type: integer
       format: int32
       minimum: 1
       maximum: 1000
-    ArrayOfObjects:
-      type: array
-      items:
-        type: object
-        additionalProperties: true
+    IntegerMin0:
+      type: integer
+      minimum: 0
+    IntegerMin1:
+      type: integer
+      minimum: 1
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
     ResponseOK:
       type: object
       properties:
@@ -353,9 +356,6 @@ components:
       - status
       - message
       - result
-    IntegerMin0:
-      type: integer
-      minimum: 0
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -83,10 +83,10 @@ paths:
                   status: '1'
 components:
   schemas:
-    Result.transaction.gettxreceiptstatus:
+    Result.transaction.getstatus:
       type: object
       additionalProperties: true
-    Result.transaction.getstatus:
+    Result.transaction.gettxreceiptstatus:
       type: object
       additionalProperties: true
     ResponseNOTOK:

@@ -283,6 +283,11 @@ paths:
                   transactionIndex: '0x92'
 components:
   schemas:
+    IntegerMin1Max1000:
+      type: integer
+      format: int32
+      minimum: 1
+      maximum: 1000
     Topic:
       type: string
       enum:
@@ -290,16 +295,6 @@ components:
       - topic1
       - topic2
       - topic3
-    TopicOperator:
-      type: string
-      enum:
-      - and
-      - or
-    ResultArrayOfObjects:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/ArrayOfObjects'
     ArrayOfObjects:
       type: array
       items:
@@ -324,21 +319,26 @@ components:
       - status
       - message
       - result
-    IntegerMin1Max1000:
-      type: integer
-      format: int32
-      minimum: 1
-      maximum: 1000
-    IntegerMin0:
-      type: integer
-      minimum: 0
     IntegerMin1:
       type: integer
       minimum: 1
+    TopicOperator:
+      type: string
+      enum:
+      - and
+      - or
+    IntegerMin0:
+      type: integer
+      minimum: 0
     AddressHash:
       type: string
       pattern: 0x[A-Fa-f0-9]{40}
       example: '0x01234567890abcdef01234567890abcdef012345'
+    ResultArrayOfObjects:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/ArrayOfObjects'
     ResponseOK:
       type: object
       properties:

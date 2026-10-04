@@ -204,58 +204,27 @@ paths:
                 result: Pass - Verified
 components:
   schemas:
-    Result.contract.verifysourcecode:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/GUID'
-    ResultArrayOfObjects:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/ArrayOfObjects'
-    ArrayOfObjects:
-      type: array
-      items:
-        type: object
-        additionalProperties: true
-    Post.contract.verifysourcecode:
-      type: object
-      properties:
-        chainId:
-          $ref: '#/components/schemas/ChainId'
-        codeformat:
-          $ref: '#/components/schemas/CodeFormat'
-        sourceCode:
-          type: string
-          description: the Solidity source code
-        constructorArguements:
-          type: string
-          description: optional, include if your contract uses constructor arguments
-        contractaddress:
-          $ref: '#/components/schemas/AddressHash'
-        contractname:
-          type: string
-          description: the name of your contract, such as contracts/Verified.sol:Verified
-        compilerversion:
-          type: string
-          description: compiler version used, such as v0.8.24+commit.e11b9ed9
-      required:
-      - chainId
-      - codeformat
-      - sourceCode
-      - contractaddress
-      - contractname
-      - compilerversion
+    CodeFormat:
+      type: string
+      description: single file -- use `solidity-single-file`; JSON file ( recommended ) -- use `solidity-standard-json-input`
+      enum:
+      - solidity-single-file
+      - solidity-standard-json-input
     Result.contract.getabi:
       type: object
       properties:
         result:
           type: string
-    TxHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{64}
-      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    Result.contract.verifysourcecode:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/GUID'
+    ArrayOfObjects:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
     ResponseNOTOK:
       type: object
       properties:
@@ -275,24 +244,6 @@ components:
       - status
       - message
       - result
-    Result.contract.getcontractcreation:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              contractAddress:
-                $ref: '#/components/schemas/AddressHash'
-              contractCreator:
-                $ref: '#/components/schemas/AddressHash'
-              txHash:
-                $ref: '#/components/schemas/TxHash'
-    GUID:
-      type: string
-      pattern: '[a-z0-9]{50}'
-      example: x3ryqcqr1zdknhfhkimqmiabcdfxncqc6nrvp3pgrcpfsqedqi
     ChainId:
       type: integer
       summary: the chain to submit verification, such as 1 for mainnet
@@ -428,22 +379,43 @@ components:
         | Testnet BlastScan           | 23888    |
 
         '
-    CodeFormat:
+    GUID:
       type: string
-      description: single file -- use `solidity-single-file`; JSON file ( recommended ) -- use `solidity-standard-json-input`
-      enum:
-      - solidity-single-file
-      - solidity-standard-json-input
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
+      pattern: '[a-z0-9]{50}'
+      example: x3ryqcqr1zdknhfhkimqmiabcdfxncqc6nrvp3pgrcpfsqedqi
     Result.contract.checkverifystatus:
       type: object
       properties:
         result:
           type: string
           const: Pass - Verified
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    TxHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{64}
+      example: '0x01234567890abcdef01234567890abcdef01234567890abcdef01234567890ab'
+    Result.contract.getcontractcreation:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              contractAddress:
+                $ref: '#/components/schemas/AddressHash'
+              contractCreator:
+                $ref: '#/components/schemas/AddressHash'
+              txHash:
+                $ref: '#/components/schemas/TxHash'
+    ResultArrayOfObjects:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/ArrayOfObjects'
     ResponseOK:
       type: object
       properties:
@@ -461,6 +433,34 @@ components:
       - status
       - message
       - result
+    Post.contract.verifysourcecode:
+      type: object
+      properties:
+        chainId:
+          $ref: '#/components/schemas/ChainId'
+        codeformat:
+          $ref: '#/components/schemas/CodeFormat'
+        sourceCode:
+          type: string
+          description: the Solidity source code
+        constructorArguements:
+          type: string
+          description: optional, include if your contract uses constructor arguments
+        contractaddress:
+          $ref: '#/components/schemas/AddressHash'
+        contractname:
+          type: string
+          description: the name of your contract, such as contracts/Verified.sol:Verified
+        compilerversion:
+          type: string
+          description: compiler version used, such as v0.8.24+commit.e11b9ed9
+      required:
+      - chainId
+      - codeformat
+      - sourceCode
+      - contractaddress
+      - contractname
+      - compilerversion
   securitySchemes:
     apiKeyAuth:
       type: apiKey

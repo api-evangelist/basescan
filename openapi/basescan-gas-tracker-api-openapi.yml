@@ -242,16 +242,12 @@ paths:
                   avgGasPrice_Wei: '18834674068'
 components:
   schemas:
-    UnixTimestampString:
+    PageSort:
       type: string
-      description: A Unix timestamp representing the number of seconds since January 1, 1970, expressed as a string.
-      pattern: ^[0-9]+$
-      example: '1623338323'
-    IntegerMin0String:
-      type: string
-      pattern: '[0-9]+'
-      description: An integer greater than 0 represented as a string.
-    Result.stats.dailyavggaslimit:
+      enum:
+      - asc
+      - desc
+    Result.stats.dailygasused:
       type: object
       properties:
         result:
@@ -263,25 +259,8 @@ components:
                 $ref: '#/components/schemas/DateYYYYMMDD'
               unixTimeStamp:
                 $ref: '#/components/schemas/UnixTimestampString'
-              gasLimit:
+              gasUsed:
                 $ref: '#/components/schemas/IntegerMin0String'
-    IntegerMin1:
-      type: integer
-      minimum: 1
-    FloatCsvString:
-      type: string
-      description: A comma-separated list of float values, represented as a string.
-      pattern: ^(\d+(\.\d+)?)(,\d+(\.\d+)?)*$
-    PageSort:
-      type: string
-      enum:
-      - asc
-      - desc
-    Result.gastracker.gasestimate:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
     Result.gastracker.gasoracle:
       type: object
       properties:
@@ -300,10 +279,20 @@ components:
               $ref: '#/components/schemas/FloatString'
             gasUsedRatio:
               $ref: '#/components/schemas/FloatCsvString'
-    FloatString:
-      type: string
-      pattern: ^\d+(\.\d+)?$
-      description: A float represented as a string.
+    Result.stats.dailyavggaslimit:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              UTCDate:
+                $ref: '#/components/schemas/DateYYYYMMDD'
+              unixTimeStamp:
+                $ref: '#/components/schemas/UnixTimestampString'
+              gasLimit:
+                $ref: '#/components/schemas/IntegerMin0String'
     Result.stats.dailyavggasprice:
       type: object
       properties:
@@ -341,25 +330,36 @@ components:
       - status
       - message
       - result
+    FloatCsvString:
+      type: string
+      description: A comma-separated list of float values, represented as a string.
+      pattern: ^(\d+(\.\d+)?)(,\d+(\.\d+)?)*$
+    IntegerMin1:
+      type: integer
+      minimum: 1
+    IntegerMin0String:
+      type: string
+      pattern: '[0-9]+'
+      description: An integer greater than 0 represented as a string.
     DateYYYYMMDD:
       type: string
       format: date
       description: A date in the YYYY-MM-DD format
       example: '2019-02-01'
-    Result.stats.dailygasused:
+    FloatString:
+      type: string
+      pattern: ^\d+(\.\d+)?$
+      description: A float represented as a string.
+    Result.gastracker.gasestimate:
       type: object
       properties:
         result:
-          type: array
-          items:
-            type: object
-            properties:
-              UTCDate:
-                $ref: '#/components/schemas/DateYYYYMMDD'
-              unixTimeStamp:
-                $ref: '#/components/schemas/UnixTimestampString'
-              gasUsed:
-                $ref: '#/components/schemas/IntegerMin0String'
+          $ref: '#/components/schemas/IntegerMin0String'
+    UnixTimestampString:
+      type: string
+      description: A Unix timestamp representing the number of seconds since January 1, 1970, expressed as a string.
+      pattern: ^[0-9]+$
+      example: '1623338323'
     ResponseOK:
       type: object
       properties:

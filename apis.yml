@@ -340,6 +340,10 @@ apis:
   - type: FAQ
     url: https://info.basescan.org
 common:
+- type: RateLimits
+  url: rate-limits/rate-limits.yml
+- type: FinOps
+  url: finops/finops.yml
 - type: Website
   url: https://basescan.org
 - type: AgenticAccess

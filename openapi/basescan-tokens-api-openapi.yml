@@ -463,28 +463,6 @@ paths:
                   TokenId: '4255'
 components:
   schemas:
-    IntegerMin1Max1000:
-      type: integer
-      format: int32
-      minimum: 1
-      maximum: 1000
-    Result.stats.tokensupplyhistory:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
-    Result.token.tokenholderlist:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              TokenHolderAddress:
-                $ref: '#/components/schemas/AddressHash'
-              TokenHolderQuantity:
-                $ref: '#/components/schemas/IntegerMin0String'
     Result.token.tokeninfo:
       type: object
       properties:
@@ -494,24 +472,14 @@ components:
             type: object
             additionalProperties: true
           maxItems: 1
-    Result.account.addresstokenbalance:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              TokenAddress:
-                $ref: '#/components/schemas/AddressHash'
-              TokenName:
-                type: string
-              TokenSymbol:
-                type: string
-              TokenQuantity:
-                $ref: '#/components/schemas/IntegerMin0String'
-              TokenDivisor:
-                $ref: '#/components/schemas/IntegerMin0String'
+    IntegerMin1Max1000:
+      type: integer
+      format: int32
+      minimum: 1
+      maximum: 1000
+    IntegerMin1:
+      type: integer
+      minimum: 1
     ResponseNOTOK:
       type: object
       properties:
@@ -531,6 +499,58 @@ components:
       - status
       - message
       - result
+    AddressHash:
+      type: string
+      pattern: 0x[A-Fa-f0-9]{40}
+      example: '0x01234567890abcdef01234567890abcdef012345'
+    IntegerMin0:
+      type: integer
+      minimum: 0
+    Result.account.tokenbalancehistory:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    Result.account.addresstokennftinventory:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              TokenAddress:
+                $ref: '#/components/schemas/AddressHash'
+              TokenId:
+                $ref: '#/components/schemas/IntegerMin0String'
+    Result.stats.tokensupplyhistory:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    Result.stats.tokensupply:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    Result.account.addresstokenbalance:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              TokenAddress:
+                $ref: '#/components/schemas/AddressHash'
+              TokenName:
+                type: string
+              TokenSymbol:
+                type: string
+              TokenQuantity:
+                $ref: '#/components/schemas/IntegerMin0String'
+              TokenDivisor:
+                $ref: '#/components/schemas/IntegerMin0String'
     Result.account.addresstokennftbalance:
       type: object
       properties:
@@ -547,10 +567,12 @@ components:
                 type: string
               TokenQuantity:
                 $ref: '#/components/schemas/IntegerMin0String'
-    IntegerMin1:
-      type: integer
-      minimum: 1
-    Result.account.addresstokennftinventory:
+    Result.account.tokenbalance:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/IntegerMin0String'
+    Result.token.tokenholderlist:
       type: object
       properties:
         result:
@@ -558,36 +580,14 @@ components:
           items:
             type: object
             properties:
-              TokenAddress:
+              TokenHolderAddress:
                 $ref: '#/components/schemas/AddressHash'
-              TokenId:
+              TokenHolderQuantity:
                 $ref: '#/components/schemas/IntegerMin0String'
     IntegerMin0String:
       type: string
       pattern: '[0-9]+'
       description: An integer greater than 0 represented as a string.
-    Result.account.tokenbalancehistory:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
-    IntegerMin0:
-      type: integer
-      minimum: 0
-    Result.account.tokenbalance:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
-    AddressHash:
-      type: string
-      pattern: 0x[A-Fa-f0-9]{40}
-      example: '0x01234567890abcdef01234567890abcdef012345'
-    Result.stats.tokensupply:
-      type: object
-      properties:
-        result:
-          $ref: '#/components/schemas/IntegerMin0String'
     ResponseOK:
       type: object
       properties:

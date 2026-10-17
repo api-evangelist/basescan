@@ -83,12 +83,6 @@ paths:
                   status: '1'
 components:
   schemas:
-    Result.transaction.getstatus:
-      type: object
-      additionalProperties: true
-    Result.transaction.gettxreceiptstatus:
-      type: object
-      additionalProperties: true
     ResponseNOTOK:
       type: object
       properties:
@@ -108,6 +102,12 @@ components:
       - status
       - message
       - result
+    Result.transaction.gettxreceiptstatus:
+      type: object
+      additionalProperties: true
+    Result.transaction.getstatus:
+      type: object
+      additionalProperties: true
     TxHash:
       type: string
       pattern: 0x[A-Fa-f0-9]{64}

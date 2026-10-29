@@ -64,47 +64,142 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Base L2 blockchain explorer with a REST API for querying Base network transactions, token balances, smart contract ABIs, and ERC-20 transfer events.
+Base L2 blockchain explorer with a REST API for querying Base network transactions, token balances, smart contract ABIs, ERC-20 transfer events, gas prices, and block data. Powered by the Etherscan team and migrated to the unified Etherscan API V2 platform, enabling access to 50+ EVM chains with a single API key using chain ID 8453 for Base.
 
-Basescan is operated by the Etherscan team and serves as the canonical block explorer for the Base L2 network (chain ID 8453). The API is fully compatible with Etherscan API V2, allowing developers to access Base alongside 50+ other EVM chains using a single API key.
+**Areas:** Blockchain · Base · L2 · Explorer · Ethereum · EVM · Transaction · Tokens · Smart Contracts
 
-**Developer Portal:** https://docs.basescan.org  
-**API Reference:** https://docs.etherscan.io/etherscan-v2  
-**API Key Registration:** https://basescan.org/myapikey  
-**Pricing:** https://etherscan.io/apis?id=8453
+## Basescan on APIs.io
 
-## API Capabilities
+Everything profiled for Basescan is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/basescan/](https://apis.io/providers/basescan/)** — or go straight to one of the APIs or properties below.
 
-- **Accounts** — Native token balances (single/multi-address), historical balances, token holdings (ERC-20/721/1155), address metadata and name tags
-- **Transactions** — Normal, internal, and token transfer history; transaction status and receipt checks
-- **Blocks** — Block details, rewards, uncle blocks, validation history, and network statistics
-- **Tokens** — ERC-20/721/1155 supply, holder lists, transfer history, and token metadata
-- **Smart Contracts** — ABI retrieval, source code, contract verification (Solidity, Vyper, Stylus, zkSync)
-- **Gas** — Gas oracle, current prices, historical daily averages
-- **Event Logs** — Filtered log queries by address and topic
-- **Ethereum RPC** — Standard `eth_` methods for block data, transaction execution, and gas estimation
+### APIs (10)
 
-## Authentication
+- [Basescan Accounts API](https://apis.io/apis/basescan/basescan-accounts-api/) — The Accounts API from Basescan — 12 operation(s) for accounts.
+- [Basescan API PRO Endpoints API](https://apis.io/apis/basescan/basescan-api-pro-endpoints-api/) — The API PRO Endpoints API from Basescan — 20 operation(s) for api pro endpoints.
+- [Basescan Blocks API](https://apis.io/apis/basescan/basescan-blocks-api/) — The Blocks API from Basescan — 8 operation(s) for blocks.
+- [Basescan Contracts API](https://apis.io/apis/basescan/basescan-contracts-api/) — The Contracts API from Basescan — 5 operation(s) for contracts.
+- [Basescan Gas Tracker API](https://apis.io/apis/basescan/basescan-gas-tracker-api/) — The Gas Tracker API from Basescan — 5 operation(s) for gas tracker.
+- [Basescan Geth/Parity Proxy API](https://apis.io/apis/basescan/basescan-geth-parity-proxy-api/) — The Geth/Parity Proxy API from Basescan — 14 operation(s) for geth/parity proxy.
+- [Basescan Logs API](https://apis.io/apis/basescan/basescan-logs-api/) — The Logs API from Basescan — 3 operation(s) for logs.
+- [Basescan Stats API](https://apis.io/apis/basescan/basescan-stats-api/) — The Stats API from Basescan — 13 operation(s) for stats.
+- [Basescan Tokens API](https://apis.io/apis/basescan/basescan-tokens-api/) — The Tokens API from Basescan — 9 operation(s) for tokens.
+- [Basescan Transactions API](https://apis.io/apis/basescan/basescan-transactions-api/) — The Transactions API from Basescan — 2 operation(s) for transactions.
 
-All requests require an API key passed as the `apikey` query parameter. Register at [basescan.org/myapikey](https://basescan.org/myapikey). For Etherscan V2 multi-chain requests, include `chainid=8453` to target the Base network.
+### Published properties
 
-## Plans
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Plan | Price/mo | Calls/sec | Calls/day |
-|------|----------|-----------|-----------|
-| Free | $0 | 3 | 100,000 |
-| Lite | $49 | 5 | 100,000 |
-| Standard | $199 | 10 | 200,000 |
-| Advanced | $299 | 20 | 500,000 |
-| Professional | $399 | 30 | 1,000,000 |
-| Pro Plus | $899 | 30 | 1,500,000 |
-| Enterprise | Custom | Unmetered | Unmetered |
+#### Agentic access (1)
 
-## Repository Structure
+Which operations an agent can call, which act, and which need a human in the loop.
 
-```
-apis.yml               # APIs.json 0.19 provider profile
-plans/plans.yml        # Pricing plan details
-rate-limits/rate-limits.yml  # Rate limit tiers and error codes
-finops/finops.yml      # FinOps guidance and cost drivers
-```
+- [Basescan Agentic Access](https://apis.io/agentic-access/basescan/basescan-agentic-access/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Apis Io Context](https://apis.io/jsonld/basescan/apis-io/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Basescan Accounts API](https://apis.io/collections/basescan/open-basescan-accounts-api/)
+- [Basescan Accounts API PRO Endpoints API](https://apis.io/collections/basescan/open-basescan-api-pro-endpoints-api/)
+- [Basescan Accounts Blocks API](https://apis.io/collections/basescan/open-basescan-blocks-api/)
+- [Basescan Accounts Contracts API](https://apis.io/collections/basescan/open-basescan-contracts-api/)
+- [Basescan Accounts Gas Tracker API](https://apis.io/collections/basescan/open-basescan-gas-tracker-api/)
+- [Basescan Accounts Geth/Parity Proxy API](https://apis.io/collections/basescan/open-basescan-geth-parity-proxy-api/)
+- [Basescan Accounts Logs API](https://apis.io/collections/basescan/open-basescan-logs-api/)
+- [Basescan Accounts Stats API](https://apis.io/collections/basescan/open-basescan-stats-api/)
+- [Basescan Accounts Tokens API](https://apis.io/collections/basescan/open-basescan-tokens-api/)
+- [Basescan Accounts Transactions API](https://apis.io/collections/basescan/open-basescan-transactions-api/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Basescan Authentication](https://apis.io/security/basescan/basescan-authentication/)
+- [Basescan Domain Security](https://apis.io/security/basescan/basescan-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Plans](https://apis.io/plans/basescan/plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rate Limits](https://apis.io/rate-limits/basescan/rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops](https://apis.io/finops/basescan/finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://basescan.org)
+- [Support](https://info.basescan.org)
+- [Blog](https://info.basescan.org)
+- [Terms of service](https://etherscan.io/terms)
+- [Privacy policy](https://etherscan.io/privacyPolicy)
+
+## API Evangelist rating
+
+**Kin Score 34.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 52.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 35.5 |
+
+**Agent readiness 24.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/basescan/](https://apis.io/providers/basescan/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Basescan: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/basescan/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
